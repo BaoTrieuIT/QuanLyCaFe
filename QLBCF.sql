@@ -1,153 +1,146 @@
 ﻿use master
 go
-	
-drop database DON
 
-create database DON
+drop database DuAn1_QuanLyCafe
+
+create database DuAn1_QuanLyCafe
 go
 
-use DON
+use DuAn1_QuanLyCafe
 go
 
 
-create table NHANVIEN(
+create table NHANVIEN
+(
 	MaNV varchar(5) primary key,
 	HoTen nvarchar(50),
-	SoDT varchar(15),
+	MatKhauNV nvarchar(100),
 	GioiTinh bit,
-	CCCD varchar(15),
 	DiaChi nvarchar(50),
+	SoDT varchar(15),
+	CCCD varchar(15),
 	NgaySinhNV date,
-	MatKhauNV nvarchar(10),
-	Vaitro varchar(50),
-	hinh nvarchar(50)
+	Vaitro bit,
+	Hinh nvarchar(50)
 )
 go
 
-
-create table HoaDonChiTiet(
-	MaHDCT varchar(5) primary key,
-	MaHD varchar(5),
-	TenMon varchar(5),
-	Soluong int,
-	Size varchar(2),
-	Thanhtien money
+create table KHACHHANG
+(
+	MaKH int identity(1,1) primary key,
+	TenKH nvarchar(100),
+	Gioitinh bit,
+	DiaChi nvarchar(255),
+	NgaySinh date,
+	Email varchar(15),
+	SoDT varchar(10),
 )
-go
 
-create table HOADON(
+create table HOADON
+(
 	MaHD varchar(5) primary key,
 	MaNV varchar(5),
-	MaKH varchar(5),
-	NgaylapHD date,
+	MaKH int,
+	NgaylapHD datetime default getdate(),
 	TongTienHD money,
-	Chietkhau money
+	GhiChu nvarchar(255),
+	constraint fk_HoaDon_of_NhanVien
+	foreign key (MaNV) references NhanVien (MaNV) on update cascade,
+	constraint fk_HoaDon_of_KhachHang
+	foreign key (MaKH) references KhachHang (MaKH) on update cascade
 )
-go
 
+Create table LOAIHANG
+(
+	MaLoaiHang int identity(1,1) primary key,
+	TenLoaiHang nvarchar(50) not null,
+)
 
-create table MENU(
-	TenMon varchar(5)primary key,
-	Sizemon varchar(2),
-	Giaban	money,
+create table HANGHOA
+(
+	MaHang varchar(10) not null primary key ,
+	TenHang nvarchar(50) not null,
+	MaLoaiHang int not null,
+	NhaSX nvarchar(50),
+	SoLuong varchar(15),
+	NgayNhap date,
+	Hinh nvarchar(200),
+	constraint fk_HangHoa_of_LoaiHang
+	foreign key (MaLoaiHang) references LoaiHang (MaLoaiHang) on update cascade
+)
+
+create table MENU
+(
+	MaMon VARCHAR(5) not null PRIMARY KEY,
+	TenMon nvarchar(50) not NULL,
+	Sizemon char(5),
+	GiaBan money,
 	GhichuMon nvarchar (1000),
 )
-go
 
-Create table Phieunhap(
-	MaPhieuNhap varchar(5) primary key,
-	MaNV varchar(5),
-	MaNhaCC varchar(5),
-	NgayNhap date,
-	TongTien money
-)
-go 
-
-Create table PhieuNhapChitiet(
-	MaPNCT varchar(8) primary key,
-	MaPhieuNhap varchar(5),
-	MaHang varchar(6),
-	SoLuongNhap int,
-	GiaNhap money,
-	ThanhTien money,
+create table HOADONCHITIET
+(
+	MaHDCT int identity(1,1) primary key,
+	MaHD varchar(5),
+	MaMon varchar(5),
+	Soluong int,
+	Thanhtien money,
+	GHiChu NVARCHAR(50),
+	constraint fk_ChiTiet_of_Menu
+	foreign key (MaMon) references Menu (MaMon) on update cascade,
+	constraint fk_ChiTiet_of_HoaDon
+	foreign key (MaHD) references HoaDon (MaHD) on DELETE cascade ON UPDATE cascade
 )
 go
 
 
-create table HANGHOA(
-	MaHang varchar(6) primary key ,
-	TenHang nvarchar(15),
-	MaLoaiHang varchar(6),
-	SoLuong varchar(15),
-	NgayNhap varchar(15),
-	hinh nvarchar(50),
-	MaMatHang varchar(25),
-	NhaSX varchar(50)
+create table KHOHANG
+(
+	MaHang varchar(10) primary key,
+	SoLuongHang int not null,
+	GiaNhap money not null,
+	GiaBan money not null,
+	TinhTrang nvarchar(25),
+	constraint fk_KhoHang_of_HangHoa
+	foreign key (MaHang) references HangHoa (MaHang) on update cascade on delete cascade
 )
-go
- 
 
 
-create table Khohang(
-	MaHang varchar(6) primary key,
-	SoLuongHang int,
-	GiaNhap money,
-	TinhTrang nvarchar(25)
-)
-go
-
-Create table LoaiHang(
-	MaLoaiHang varchar(6) primary key,
-	TenLoaiHang nvarchar(50)
-)
-go
-
-create table KHACHHANG(
-	MaKH varchar(5) primary key,
-	TenKH nvarchar(50),
-	NS date,
-	SoDT varchar(10),
-	Email varchar(15),
-	Gioitinh varchar(5)
-)
-go
-
-create table NhapCungCap(
-	MaNhaCC varchar(5) primary key,
+create table NHACUNGCAP
+(
+	MaNhaCC int IDENTITY(1,1) primary key,
 	TenNhaCC nvarchar(100),
-	DiaChiNhaCC nvarchar(200),
-	SdtNhaCC varchar(10),
+	SDT varchar(10),
+	DiaChi nvarchar(200),
 	NguoiLienHe nvarchar(55),
 	GhiChu nvarchar(55),
 )
-go
 
-alter table HOADON
-Add CONSTRAINT FK_NV_HD FOREIGN KEY (MaNV)REFERENCES NHANVIEN(MaNV);
+Create table PHIEUNHAP
+(
+	MaPhieuNhap varchar(5) primary key,
+	MaNV varchar(5),
+	MaNhaCC INT,
+	NgayNhap datetime,
+	TongTien money,
+	GhiChu nvarchar(255)
+	constraint fk_PhieuNhap_by_NhanVien
+	foreign key (MaNV) references NhanVien (MaNV) on update cascade,
+	constraint fk_NhapHang_by_NhaCungCap
+	foreign key (MaNhaCC) references NhaCungCap (MaNhaCC) on update cascade
+)
 
-alter table HOADON
-Add CONSTRAINT FK_HD_KH FOREIGN KEY (MaKH)REFERENCES KHACHHANG(MaKH);
-----
-alter table Phieunhap
-Add CONSTRAINT FK_NCC_PN FOREIGN KEY (MaNhaCC)REFERENCES NhapCungCap(MaNhaCC);
+Create table PHIEUNHAPCHITIET
+(
+	MaPNCT int identity(1,1) primary key,
+	MaPhieuNhap varchar(5),
+	MaHang varchar(10),
+	SoLuongNhap int,
+	GiaNhap money,
+	ThanhTien money,
+	constraint fk_ChiTiet_of_PhieuNhap
+	foreign key (MaPhieuNhap) references PhieuNhap (MaPhieuNhap) on update cascade ,
+	constraint fk_PhieuNhap_of_HangHoa
+	foreign key (MaHang) references HangHoa (MaHang) on update cascade
+)
 
-alter table Phieunhap
-Add CONSTRAINT FK_NV_PN FOREIGN KEY (MANV)REFERENCES NHANVIEN(MANV);
-
-alter table PhieuNhapChiTiet
-Add CONSTRAINT FK_PNCT_PN FOREIGN KEY (MaPhieuNhap)REFERENCES Phieunhap(MaPhieuNhap);
-
-alter table PhieuNhapChiTiet
-Add CONSTRAINT FK_PNCT_HH FOREIGN KEY (MaHang)REFERENCES HANGHOA(MaHang);
-
-alter table HANGHOA
-add constraint Fk_HH_LH foreign key (MaLoaiHang) references LoaiHang(MaLoaiHang);
-
-alter table HoaDonChiTiet
-Add CONSTRAINT FK_HD_HDCT FOREIGN KEY (MaHD)REFERENCES HOADON(MaHD);
-
-alter table HoaDonChiTiet
-Add CONSTRAINT FK_MN_HDCT FOREIGN KEY (TenMon)REFERENCES MENU(TenMon);
-
-alter table KhoHang
-add constraint fk_kh_HH foreign key (MaHang) references HangHoa(MaHang);
