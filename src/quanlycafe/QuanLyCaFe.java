@@ -10,7 +10,7 @@ import java.io.*;
 public class QuanLyCaFe {
 
     public static void main(String[] args) {
-      
+        System.out.println("Hehe boyyyy");
 
     }
 
