@@ -18,6 +18,8 @@ public class NhanVien {
     private Boolean GioiTinh = true;
     private String DiaChi;
     private String SDT;
+    private String CCCD;
+    private Date NgaySinhNV;
     private Boolean VaiTro = false;
     private String Hinh;
 
@@ -83,6 +85,22 @@ public class NhanVien {
 
     public void setHinh(String Hinh) {
         this.Hinh = Hinh;
+    }
+
+    public String getCCCD() {
+        return CCCD;
+    }
+
+    public void setCCCD(String CCCD) {
+        this.CCCD = CCCD;
+    }
+
+    public Date getNgaySinhNV() {
+        return NgaySinhNV;
+    }
+
+    public void setNgaySinhNV(Date NgaySinhNV) {
+        this.NgaySinhNV = NgaySinhNV;
     }
     
 

@@ -1,6 +1,9 @@
 package UI;
 
 //import Utils.XImage;
+import DAO.NhanVienDAO;
+import EntityClass.NhanVien;
+import Utils.Auth;
 import Utils.MsgBox;
 import Utils.XImage;
 import javax.swing.ImageIcon;
@@ -9,14 +12,14 @@ import javax.swing.ImageIcon;
  *
  * @author Norcirpac
  */
-public class LoginFormJDialog extends javax.swing.JDialog {
+public class LoginForm_CafeHouse extends javax.swing.JDialog {
 
     /**
      * Creates new form LoginFormJDialog
      */
     boolean isShow = false;
 
-    public LoginFormJDialog(java.awt.Frame parent, boolean modal) {
+    public LoginForm_CafeHouse(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         init();
@@ -82,17 +85,17 @@ public class LoginFormJDialog extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("User Login");
+        jLabel2.setText("Đăng nhập");
         kGradientPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
 
         txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtUserName.setText("username");
+        txtUserName.setText("NV1");
         txtUserName.setToolTipText("");
         txtUserName.setBorder(null);
         kGradientPanel2.add(txtUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 360, -1));
 
         txtPassWord.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtPassWord.setText("password");
+        txtPassWord.setText("123456");
         txtPassWord.setBorder(null);
         kGradientPanel2.add(txtPassWord, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 320, -1));
 
@@ -112,7 +115,7 @@ public class LoginFormJDialog extends javax.swing.JDialog {
 
         btnExit.setBackground(new java.awt.Color(255, 255, 255));
         btnExit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnExit.setText("Exit");
+        btnExit.setText("Thoát");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -122,12 +125,12 @@ public class LoginFormJDialog extends javax.swing.JDialog {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("or");
-        kGradientPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, -1, -1));
+        jLabel7.setText("hay");
+        kGradientPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, -1, -1));
 
         btnLogin.setBackground(new java.awt.Color(255, 255, 255));
         btnLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnLogin.setText("Login");
+        btnLogin.setText("Đăng nhập");
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,20 +177,21 @@ public class LoginFormJDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginFormJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginForm_CafeHouse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginFormJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginForm_CafeHouse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginFormJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginForm_CafeHouse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginFormJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginForm_CafeHouse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                LoginFormJDialog dialog = new LoginFormJDialog(new javax.swing.JFrame(), true);
+                LoginForm_CafeHouse dialog = new LoginForm_CafeHouse(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -216,7 +220,9 @@ public class LoginFormJDialog extends javax.swing.JDialog {
     private javax.swing.JPasswordField txtPassWord;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
-private void init() {
+    NhanVienDAO dao = new NhanVienDAO();
+
+    private void init() {
         this.setLocationRelativeTo(null);
         this.setIconImage(XImage.getAppIcon());
     }
@@ -231,13 +237,31 @@ private void init() {
         }
 
     }
+
     void exit() {
-        if (MsgBox.confirm(this, "Do you want to Exit ?")) {
+        if (MsgBox.confirm(this, "Bạn có muốn thoát không ?")) {
             System.exit(0);
         }
     }
 
     private void login() {
-   
+       
+            String manv = txtUserName.getText();
+            String matKhau = new String(txtPassWord.getPassword());
+            NhanVien nhanvien = dao.selectById(manv);
+            if (nhanvien == null) {
+                MsgBox.alert(this, "Sai tên đăng nhập !");
+                txtUserName.requestFocus();
+            } else if (!matKhau.equals(nhanvien.getMatKhau())) {
+                MsgBox.alert(this, "Sai mật khẩu !");
+                txtUserName.requestFocus();
+
+            } else {
+                Auth.user = nhanvien; // user = manv
+                  MsgBox.alert(this, "Đăng nhập thành công !");
+                  ScreenMain_CafeHouse sm = new ScreenMain_CafeHouse();
+                  sm.setVisible(true);
+                this.dispose();
+            }
     }
 }

@@ -13,11 +13,11 @@ import java.util.List;
 
 public class NhanVienDAO extends QuanLiCFDAO<NhanVien, String> {
 
-    final String Insert_SQL = "insert into NhanVien (MaNV,HoTen,MatKhauNV,GioiTinh,DiaChi,SoDT, Vaitro,Hinh) values (?,?,?,?,?,?,?,?)";
-    final String Update_SQL = "update NhanVien set HoTen=?,MatKhauNV=?,GioiTinh=?,SoDT=?,DiaChi=?,Vaitro=?,Hinh=? where MaNV = ? ";
-    final String Delete_SQL = "delete from NhanVien where MaNV = ?";
-    final String SelectAll_SQL = "select *from NhanVien";
-    final String SelectByID_SQL = "select *from NhanVien where MaNV=?";
+     String Insert_SQL = "insert into NhanVien (MaNV,HoTen,MatKhauNV,GioiTinh,DiaChi,SoDT,CCCD, NgaySinhNV Vaitro,Hinh) values (?,?,?,?,?,?,?,?,?,?)";
+     String Update_SQL = "update NhanVien set HoTen=?,MatKhauNV=?,GioiTinh=?,DiaChi=? , SoDT=?, CCCD = ?, NgaySinhNV = ? ,Vaitro=?,Hinh=? where MaNV = ? ";
+     String Delete_SQL = "delete from NhanVien where MaNV = ?";
+     String SelectAll_SQL = "select * from NhanVien";
+     String SelectByID_SQL = "select * from NhanVien where MaNV=?";
 
     @Override
     public void insert(NhanVien entity) {
@@ -28,6 +28,8 @@ public class NhanVienDAO extends QuanLiCFDAO<NhanVien, String> {
                 entity.getGioiTinh(),
                 entity.getDiaChi(),
                 entity.getSDT(),
+                entity.getCCCD(),
+                entity.getNgaySinhNV(),
                 entity.getVaiTro(),
                 entity.getHinh());
     }
@@ -40,6 +42,8 @@ public class NhanVienDAO extends QuanLiCFDAO<NhanVien, String> {
                 entity.getGioiTinh(),
                 entity.getDiaChi(),
                 entity.getSDT(),
+                entity.getCCCD(),
+                entity.getNgaySinhNV(),
                 entity.getVaiTro(),
                 entity.getHinh(),
                 entity.getMaNV()
@@ -67,7 +71,7 @@ public class NhanVienDAO extends QuanLiCFDAO<NhanVien, String> {
 
     @Override
     protected List<NhanVien> selectBySQL(String sql, Object... args) {
-         List<NhanVien> list = new ArrayList<>();
+        List<NhanVien> list = new ArrayList<>();
         try {
             ResultSet rs = JdbcHelper.query(sql, args);
             while (rs.next()) {
@@ -76,16 +80,20 @@ public class NhanVienDAO extends QuanLiCFDAO<NhanVien, String> {
                 entity.setTenNV(rs.getString("HoTen"));
                 entity.setMatKhau(rs.getString("MatKhauNV"));
                 entity.setGioiTinh(rs.getBoolean("GioiTinh"));
-                entity.setSDT(rs.getString("SoDT"));
                 entity.setDiaChi(rs.getString("DiaChi"));
+                entity.setSDT(rs.getString("SoDT"));
+                entity.setCCCD(rs.getString("CCCD"));
+                entity.setNgaySinhNV(rs.getDate("NgaySinhNV"));
                 entity.setVaiTro(rs.getBoolean("Vaitro"));
                 entity.setHinh(rs.getString("Hinh"));
                 list.add(entity);
             }
+            rs.getStatement().getConnection().close();
+            return list;
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
+//            e.printStackTrace();
         }
-        return list;
     }
 
 }

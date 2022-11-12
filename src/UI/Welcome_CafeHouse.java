@@ -7,12 +7,12 @@ import Utils.XImage;
  *
  * @author Norcirpac
  */
-public class WelcomeFormJDialog extends javax.swing.JDialog {
+public class Welcome_CafeHouse extends javax.swing.JFrame {
 
     /**
      * Creates new form WelcomeFormJDialog
      */
-    public WelcomeFormJDialog() {
+    public Welcome_CafeHouse() {
         initComponents();
         init();
     }
@@ -117,14 +117,17 @@ public class WelcomeFormJDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(WelcomeFormJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Welcome_CafeHouse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(WelcomeFormJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Welcome_CafeHouse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(WelcomeFormJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Welcome_CafeHouse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(WelcomeFormJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Welcome_CafeHouse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
@@ -146,7 +149,7 @@ public class WelcomeFormJDialog extends javax.swing.JDialog {
     }
 
     static void welcome() {
-        WelcomeFormJDialog sp = new WelcomeFormJDialog();
+        Welcome_CafeHouse sp = new Welcome_CafeHouse();
         sp.setVisible(true);
 
         try {
@@ -178,7 +181,7 @@ public class WelcomeFormJDialog extends javax.swing.JDialog {
 
                 if (i == 100) {
                     sp.dispose();
-                    new LoginFormJDialog(new javax.swing.JFrame(), true).setVisible(true);
+                    new LoginForm_CafeHouse(new javax.swing.JFrame(), true).setVisible(true);
                 }
 
             }
