@@ -1,5 +1,5 @@
 
-package EntityClass;
+package DAO;
 
 
 /*
@@ -9,8 +9,7 @@ import java.sql.*;
 import java.util.Date;
 
 
-public class LoaiHang {
-    private int MaLoaiHang;
-    private String TenLoaiHang;
+public class HoaDonDAO {
+
     
 }

@@ -15,9 +15,57 @@ public class HoaDonChiTiet {
         private int MaHDCT ;
 	private String MaHD ;
 	private String MaMon ;
-	private String TenMon ;
 	private int SoLuong ;
 	private double ThanhTien;
         private String GhiChu;
+
+    public int getMaHDCT() {
+        return MaHDCT;
+    }
+
+    public void setMaHDCT(int MaHDCT) {
+        this.MaHDCT = MaHDCT;
+    }
+
+    public String getMaHD() {
+        return MaHD;
+    }
+
+    public void setMaHD(String MaHD) {
+        this.MaHD = MaHD;
+    }
+
+    public String getMaMon() {
+        return MaMon;
+    }
+
+    public void setMaMon(String MaMon) {
+        this.MaMon = MaMon;
+    }
+
+    public int getSoLuong() {
+        return SoLuong;
+    }
+
+    public void setSoLuong(int SoLuong) {
+        this.SoLuong = SoLuong;
+    }
+
+    public double getThanhTien() {
+        return ThanhTien;
+    }
+
+    public void setThanhTien(double ThanhTien) {
+        this.ThanhTien = ThanhTien;
+    }
+
+    public String getGhiChu() {
+        return GhiChu;
+    }
+
+    public void setGhiChu(String GhiChu) {
+        this.GhiChu = GhiChu;
+    }
+        
 
  }

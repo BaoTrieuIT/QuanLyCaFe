@@ -17,8 +17,56 @@ public class HoaDon {
     private String MaNV;
     private int MaKH;
     private Date NgayLapHD = new Date();
-    private double TongTien;
+    private double TongTienHD;
     private String GhiChu;
+
+    public String getMaHD() {
+        return MaHD;
+    }
+
+    public void setMaHD(String MaHD) {
+        this.MaHD = MaHD;
+    }
+
+    public String getMaNV() {
+        return MaNV;
+    }
+
+    public void setMaNV(String MaNV) {
+        this.MaNV = MaNV;
+    }
+
+    public int getMaKH() {
+        return MaKH;
+    }
+
+    public void setMaKH(int MaKH) {
+        this.MaKH = MaKH;
+    }
+
+    public Date getNgayLapHD() {
+        return NgayLapHD;
+    }
+
+    public void setNgayLapHD(Date NgayLapHD) {
+        this.NgayLapHD = NgayLapHD;
+    }
+
+    public double getTongTienHD() {
+        return TongTienHD;
+    }
+
+    public void setTongTienHD(double TongTienHD) {
+        this.TongTienHD = TongTienHD;
+    }
+
+    public String getGhiChu() {
+        return GhiChu;
+    }
+
+    public void setGhiChu(String GhiChu) {
+        this.GhiChu = GhiChu;
+    }
     
 
 }

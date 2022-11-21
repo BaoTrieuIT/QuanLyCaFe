@@ -21,4 +21,60 @@ public class KhachHang {
     private String Email;
     private String SDT;
 
+    public int getMaKH() {
+        return MaKH;
+    }
+
+    public void setMaKH(int MaKH) {
+        this.MaKH = MaKH;
+    }
+
+    public String getTenKH() {
+        return TenKH;
+    }
+
+    public void setTenKH(String TenKH) {
+        this.TenKH = TenKH;
+    }
+
+    public Boolean getGioiTinh() {
+        return GioiTinh;
+    }
+
+    public void setGioiTinh(Boolean GioiTinh) {
+        this.GioiTinh = GioiTinh;
+    }
+
+    public String getDiaChi() {
+        return DiaChi;
+    }
+
+    public void setDiaChi(String DiaChi) {
+        this.DiaChi = DiaChi;
+    }
+
+    public Date getNgaySinh() {
+        return NgaySinh;
+    }
+
+    public void setNgaySinh(Date NgaySinh) {
+        this.NgaySinh = NgaySinh;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+
+    public String getSDT() {
+        return SDT;
+    }
+
+    public void setSDT(String SDT) {
+        this.SDT = SDT;
+    }
+
 }

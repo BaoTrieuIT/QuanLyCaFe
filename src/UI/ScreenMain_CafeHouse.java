@@ -51,9 +51,6 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
         BanHang1 = new javax.swing.JPanel();
         BanHangLabel1 = new javax.swing.JLabel();
         IconBanHang1 = new javax.swing.JLabel();
-        BanHang4 = new javax.swing.JPanel();
-        BanHangLabel4 = new javax.swing.JLabel();
-        IconBanHang4 = new javax.swing.JLabel();
         BanHang5 = new javax.swing.JPanel();
         BanHangLabel5 = new javax.swing.JLabel();
         IconBanHang5 = new javax.swing.JLabel();
@@ -286,37 +283,6 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
             .addComponent(IconBanHang1, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
         );
 
-        BanHang4.setBackground(new java.awt.Color(135, 99, 44));
-        BanHang4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BanHang4MouseClicked(evt);
-            }
-        });
-
-        BanHangLabel4.setBackground(new java.awt.Color(255, 204, 102));
-        BanHangLabel4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        BanHangLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        BanHangLabel4.setText("Quản lý Menu");
-
-        IconBanHang4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/menu.png"))); // NOI18N
-
-        javax.swing.GroupLayout BanHang4Layout = new javax.swing.GroupLayout(BanHang4);
-        BanHang4.setLayout(BanHang4Layout);
-        BanHang4Layout.setHorizontalGroup(
-            BanHang4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BanHang4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(IconBanHang4)
-                .addGap(18, 18, 18)
-                .addComponent(BanHangLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        BanHang4Layout.setVerticalGroup(
-            BanHang4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BanHangLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(IconBanHang4, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-        );
-
         BanHang5.setBackground(new java.awt.Color(135, 99, 44));
         BanHang5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -370,8 +336,8 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(IconBanHang6)
                 .addGap(18, 18, 18)
-                .addComponent(BanHangLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(BanHangLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         BanHang6Layout.setVerticalGroup(
             BanHang6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -401,8 +367,8 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(IconBanHang7)
                 .addGap(18, 18, 18)
-                .addComponent(BanHangLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(BanHangLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         BanHang7Layout.setVerticalGroup(
             BanHang7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,7 +386,6 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
                     .addComponent(BanHang7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BanHang1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BanHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BanHang4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BanHang5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BanHang6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(29, Short.MAX_VALUE))
@@ -430,17 +395,15 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(BanHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addComponent(BanHang1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BanHang4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(35, 35, 35)
                 .addComponent(BanHang5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addComponent(BanHang6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(BanHang7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -477,14 +440,16 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ThanhNgangPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1))
-                    .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -536,10 +501,6 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
     private void BanHang1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BanHang1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_BanHang1MouseClicked
-
-    private void BanHang4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BanHang4MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BanHang4MouseClicked
 
     private void BanHang5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BanHang5MouseClicked
         // TODO add your handling code here:
@@ -593,13 +554,11 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BanHang;
     private javax.swing.JPanel BanHang1;
-    private javax.swing.JPanel BanHang4;
     private javax.swing.JPanel BanHang5;
     private javax.swing.JPanel BanHang6;
     private javax.swing.JPanel BanHang7;
     private javax.swing.JLabel BanHangLabel;
     private javax.swing.JLabel BanHangLabel1;
-    private javax.swing.JLabel BanHangLabel4;
     private javax.swing.JLabel BanHangLabel5;
     private javax.swing.JLabel BanHangLabel6;
     private javax.swing.JLabel BanHangLabel7;
@@ -607,7 +566,6 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
     private javax.swing.JPanel DangXuatPanel;
     private javax.swing.JLabel IconBanHang;
     private javax.swing.JLabel IconBanHang1;
-    private javax.swing.JLabel IconBanHang4;
     private javax.swing.JLabel IconBanHang5;
     private javax.swing.JLabel IconBanHang6;
     private javax.swing.JLabel IconBanHang7;
