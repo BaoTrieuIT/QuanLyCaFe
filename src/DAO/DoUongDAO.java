@@ -5,6 +5,7 @@ package DAO;
 * Author : Triệu Phan Thiên Bảo - PS22325
  */
 import EntityClass.DoUong;
+import Utils.JdbcHelper;
 import java.sql.*;
 import java.util.Date;
 import java.util.List;
@@ -18,8 +19,13 @@ public class DoUongDAO extends QuanLiCFDAO<DoUong, String> {
     String SelectByID_SQL = "select * from DoUong where MaMon=?";
 
     @Override
-    public void insert(DoUong entity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void insert(DoUong e) {
+        JdbcHelper.update(Insert_SQL, 
+                e.getMaMon(),
+                e.getMaNhaCC(),
+                e.getTenMon(),
+                e.getSizeMon(),
+                e.getGiaBan());
     }
 
     @Override

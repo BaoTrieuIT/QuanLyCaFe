@@ -92,7 +92,6 @@ public class NhanVienDAO extends QuanLiCFDAO<NhanVien, String> {
             return list;
         } catch (Exception e) {
             throw new RuntimeException(e);
-//            e.printStackTrace();
         }
     }
 
