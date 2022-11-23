@@ -15,6 +15,7 @@ public class DoUong {
 
     private String MaMon;
     private int MaNhaCC;
+    private String TenNhaCC;
     private String TenMon;
     private String SizeMon;
     private double GiaBan;
@@ -24,6 +25,15 @@ public class DoUong {
     private Date NgayHetHan;
     private String Hinh;
     private String GhiChuMon;
+
+    public String getTenNhaCC() {
+        return TenNhaCC;
+    }
+
+    public void setTenNhaCC(String TenNhaCC) {
+        this.TenNhaCC = TenNhaCC;
+    }
+    
 
     public String getMaMon() {
         return MaMon;

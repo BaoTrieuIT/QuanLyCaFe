@@ -38,7 +38,7 @@ go
 
 create table HOADON
 (
-	MaHD varchar(10) primary key,
+	MaHD int identity(1,1) primary key,
 	MaNV varchar(10),
 	MaKH int,
 	NgaylapHD datetime default getdate(),
@@ -62,6 +62,7 @@ create table NHACUNGCAP
 )
 go
 
+--select * from DoUong du inner join NhaCungCap ncc on du.MaNhaCC = ncc.MaNhaCC where ncc.TenNhaCC like '%The Dream of Coffee%'
 create table DoUong
 (
 	MaMon VARCHAR(10) not null PRIMARY KEY,
@@ -83,7 +84,7 @@ go
 create table HOADONCHITIET
 (
 	MaHDCT int identity(1,1) primary key,
-	MaHD varchar(10),
+	MaHD int,
 	MaMon varchar(10),
 	Soluong int,
 	Thanhtien money,

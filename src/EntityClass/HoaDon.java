@@ -13,18 +13,18 @@ import java.util.Date;
  */
 public class HoaDon {
 
-    private String MaHD;
+    private int MaHD;
     private String MaNV;
     private int MaKH;
     private Date NgayLapHD = new Date();
     private double TongTienHD;
     private String GhiChu;
 
-    public String getMaHD() {
+    public int getMaHD() {
         return MaHD;
     }
 
-    public void setMaHD(String MaHD) {
+    public void setMaHD(int MaHD) {
         this.MaHD = MaHD;
     }
 

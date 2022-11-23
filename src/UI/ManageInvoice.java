@@ -1,6 +1,14 @@
 package UI;
 
 //import Utils.XImage;
+import DAO.HoaDonDAO;
+import EntityClass.HoaDon;
+import Utils.ChuyenDoi;
+import Utils.MsgBox;
+import java.text.DecimalFormat;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Norcirpac
@@ -10,6 +18,8 @@ public class ManageInvoice extends javax.swing.JDialog {
     /**
      * Creates new form ManageInvoice
      */
+    DecimalFormat dcf = new DecimalFormat("###,###,###.###");
+
     public ManageInvoice(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -192,8 +202,34 @@ public class ManageInvoice extends javax.swing.JDialog {
     private javax.swing.JTable tblHoaDon;
     private javax.swing.JTextField txtTim;
     // End of variables declaration//GEN-END:variables
-private void init() {
+    HoaDonDAO dao = new HoaDonDAO();
+
+    private void init() {
         this.setLocationRelativeTo(null);
 //        this.setIconImage(XImage.getAppIcon());
+        fillToTable();
+    }
+
+    void fillToTable() {
+        DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
+        model.setRowCount(0);
+        try {
+            String keyword = txtTim.getText();
+            List<HoaDon> list = (List<HoaDon>) dao.selectById(keyword);
+            for (HoaDon hd : list) {
+                Object[] row = {
+                    tblHoaDon.getRowCount() + 1,
+                    hd.getMaHD(),
+                    hd.getMaNV(),
+                    //                    hd.getS(),
+                    ChuyenDoi.toString(hd.getNgayLapHD(), "dd/MM/yyyy"),
+                    dcf.format(hd.getTongTienHD()),
+                    hd.getGhiChu()
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi truy vấn: " + e.toString());
+        }
     }
 }

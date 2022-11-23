@@ -81,6 +81,7 @@ public class DoUongDAO extends QuanLiCFDAO<DoUong, String> {
                 DoUong e = new DoUong();
                 e.setMaMon(rs.getString("MaMon"));
                 e.setMaNhaCC(rs.getInt("MaNhaCC"));
+                e.setTenNhaCC(rs.getString("TenNhaCC"));
                 e.setTenMon(rs.getString("TenMon"));
                 e.setSizeMon(rs.getString("Sizemon"));
                 e.setGiaBan(rs.getDouble("GiaBan"));
@@ -101,6 +102,11 @@ public class DoUongDAO extends QuanLiCFDAO<DoUong, String> {
 
     public List<DoUong> selectByKeytWord(String keyword) {
         String sql = "Select * from DoUong where TenMon like ?";
+        return this.selectBySQL(sql, "%" + keyword + "%");
+    }
+
+    public List<DoUong> selectByKeytWordInnerJoin(String keyword) {
+        String sql = "select * from DoUong du inner join NhaCungCap ncc on du.MaNhaCC = ncc.MaNhaCC where ncc.TenNhaCC like ?";
         return this.selectBySQL(sql, "%" + keyword + "%");
     }
 

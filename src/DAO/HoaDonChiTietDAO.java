@@ -68,7 +68,7 @@ public class HoaDonChiTietDAO extends QuanLiCFDAO<HoaDonChiTiet, Integer> {
             while (rs.next()) {
                 HoaDonChiTiet entity = new HoaDonChiTiet();
                 entity.setMaHDCT(rs.getInt("MaHDCT"));
-                entity.setMaHD(rs.getString("MaHD"));
+                entity.setMaHD(rs.getInt("MaHD"));
                 entity.setMaMon(rs.getString("MaMon"));
                 entity.setSoLuong(rs.getInt("SoLuong"));
                 entity.setThanhTien(rs.getDouble("ThanhTien"));

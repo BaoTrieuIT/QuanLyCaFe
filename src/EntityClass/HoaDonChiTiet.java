@@ -13,7 +13,7 @@ import java.util.HashMap;
  */
 public class HoaDonChiTiet {
         private int MaHDCT ;
-	private String MaHD ;
+	private int MaHD ;
 	private String MaMon ;
 	private int SoLuong ;
 	private double ThanhTien;
@@ -27,11 +27,11 @@ public class HoaDonChiTiet {
         this.MaHDCT = MaHDCT;
     }
 
-    public String getMaHD() {
+    public int getMaHD() {
         return MaHD;
     }
 
-    public void setMaHD(String MaHD) {
+    public void setMaHD(int MaHD) {
         this.MaHD = MaHD;
     }
 

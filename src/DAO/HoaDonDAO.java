@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class HoaDonDAO extends QuanLiCFDAO<HoaDon, String> {
+    public class HoaDonDAO extends QuanLiCFDAO<HoaDon, String> {
 
     String Insert_SQL = "insert into HOADON (MaHD,MaNV,MaKH,NgayLapHD,TongTienHD,GhiChu) values (?,?,?,?,?,?)";
     String Update_SQL = "update HOADON set MaNV = ?, MaKH = ?, NgayLapHD = ?, TongTienHD = ?, GhiChu = ? where MaHD = ? ";
@@ -67,7 +67,7 @@ public class HoaDonDAO extends QuanLiCFDAO<HoaDon, String> {
             ResultSet rs = JdbcHelper.query(sql, args);
             while (rs.next()) {
                 HoaDon entity = new HoaDon();
-                entity.setMaHD(rs.getString("MaHD"));
+                entity.setMaHD(rs.getInt("MaHD"));
                 entity.setMaNV(rs.getString("MaNV"));
                 entity.setMaKH(rs.getInt("MaKH"));
                 entity.setNgayLapHD(rs.getDate("NgayLapHD"));

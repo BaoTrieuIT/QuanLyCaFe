@@ -47,17 +47,17 @@ public class KhachHangDAO extends QuanLiCFDAO<KhachHang, Integer> {
 
     @Override
     public void delete(Integer key) {
-       JdbcHelper.update(Delete_SQL, key);
+        JdbcHelper.update(Delete_SQL, key);
     }
 
     @Override
     public List<KhachHang> selectAll() {
-          return selectBySQL(SelectAll_SQL);
+        return selectBySQL(SelectAll_SQL);
     }
 
     @Override
     public KhachHang selectById(Integer key) {
-       List<KhachHang> list = selectBySQL(SelectByID_SQL, key);
+        List<KhachHang> list = selectBySQL(SelectByID_SQL, key);
         if (list.isEmpty()) {
             return null;
         }
@@ -66,18 +66,18 @@ public class KhachHangDAO extends QuanLiCFDAO<KhachHang, Integer> {
 
     @Override
     protected List<KhachHang> selectBySQL(String sql, Object... args) {
-       List<KhachHang> list = new ArrayList<>();
+        List<KhachHang> list = new ArrayList<>();
         try {
             ResultSet rs = JdbcHelper.query(sql, args);
             while (rs.next()) {
                 KhachHang e = new KhachHang();
-               e.setMaKH(rs.getInt("MaKH"));
-               e.setTenKH(rs.getString("TenKH"));
-               e.setGioiTinh(rs.getBoolean("GioiTinh"));
-               e.setDiaChi(rs.getString("DiaChi"));
-               e.setNgaySinh(rs.getDate("NgaySinh"));
-               e.setEmail(rs.getString("Email"));
-               e.setSDT(rs.getString("SDT"));
+                e.setMaKH(rs.getInt("MaKH"));
+                e.setTenKH(rs.getString("TenKH"));
+                e.setGioiTinh(rs.getBoolean("GioiTinh"));
+                e.setDiaChi(rs.getString("DiaChi"));
+                e.setNgaySinh(rs.getDate("NgaySinh"));
+                e.setEmail(rs.getString("Email"));
+                e.setSDT(rs.getString("SoDT"));
                 list.add(e);
             }
             rs.getStatement().getConnection().close();
@@ -87,4 +87,8 @@ public class KhachHangDAO extends QuanLiCFDAO<KhachHang, Integer> {
         }
     }
 
+    public List<KhachHang> selectByKeytWord(String keyword) {
+        String sql = "Select * from KhachHang where TenKH like ?";
+        return this.selectBySQL(sql, "%" + keyword + "%");
+    }
 }
