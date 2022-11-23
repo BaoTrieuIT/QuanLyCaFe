@@ -14,7 +14,7 @@ import java.util.List;
 public class HoaDonDAO extends QuanLiCFDAO<HoaDon, String> {
 
     String Insert_SQL = "insert into HOADON (MaHD,MaNV,MaKH,NgayLapHD,TongTienHD,GhiChu) values (?,?,?,?,?,?)";
-    String Update_SQL = "update HOADON set MaKH = ?, NgayLapHD = ?, TongTienHD = ?, GhiChu = ? where MaHD = ? ";
+    String Update_SQL = "update HOADON set MaNV = ?, MaKH = ?, NgayLapHD = ?, TongTienHD = ?, GhiChu = ? where MaHD = ? ";
     String Delete_SQL = "delete from HOADON where MaHD = ?";
     String SelectAll_SQL = "select * from HOADON";
     String SelectByID_SQL = "select * from HOADON where MaHD = ?";
@@ -33,12 +33,12 @@ public class HoaDonDAO extends QuanLiCFDAO<HoaDon, String> {
     @Override
     public void update(HoaDon entity) {
         JdbcHelper.update(Update_SQL,
-                entity.getMaHD(),
                 entity.getMaNV(),
                 entity.getMaKH(),
                 entity.getNgayLapHD(),
                 entity.getTongTienHD(),
-                entity.getGhiChu());
+                entity.getGhiChu(),
+                entity.getMaHD());
     }
 
     @Override

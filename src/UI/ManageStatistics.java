@@ -10,9 +10,10 @@ import javax.swing.*;
 import javax.swing.table.*;
 import java.sql.*;
        
-public class ManageStatistics extends javax.swing.JFrame {
+public class ManageStatistics extends javax.swing.JDialog {
 
-    public ManageStatistics() {
+    public ManageStatistics(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -37,7 +38,7 @@ public class ManageStatistics extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tblDoanhThu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -190,7 +191,14 @@ public class ManageStatistics extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageStatistics().setVisible(true);
+                ManageStatistics dialog = new ManageStatistics(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

@@ -31,7 +31,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="kGradientPanel2" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="kGradientPanel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -72,7 +75,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                   <Component id="jLabel10" min="-2" pref="188" max="-2" attributes="0"/>
-                  <EmptySpace pref="57" max="32767" attributes="0"/>
+                  <EmptySpace pref="74" max="32767" attributes="0"/>
                   <Component id="ThanhNgangPanel" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -156,7 +159,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="IconNhanVien1" min="-2" pref="33" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="IconThongTin" min="-2" pref="91" max="-2" attributes="0"/>
+                          <Component id="IconThongTin" pref="91" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -363,11 +366,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="BanHang7" max="32767" attributes="0"/>
-                          <Component id="BanHang1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="ThongKeDoanhThu" max="32767" attributes="0"/>
+                          <Component id="QuanLyNhanVien" alignment="0" max="32767" attributes="0"/>
                           <Component id="BanHang" alignment="0" max="32767" attributes="0"/>
-                          <Component id="BanHang5" alignment="0" max="32767" attributes="0"/>
-                          <Component id="BanHang6" alignment="0" max="32767" attributes="0"/>
+                          <Component id="QuanLyHangHoa" alignment="0" max="32767" attributes="0"/>
+                          <Component id="QuanLyKhachHang" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
@@ -379,13 +382,13 @@
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="BanHang" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="BanHang1" min="-2" max="-2" attributes="0"/>
+                      <Component id="QuanLyNhanVien" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="BanHang5" min="-2" max="-2" attributes="0"/>
+                      <Component id="QuanLyHangHoa" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="BanHang6" min="-2" max="-2" attributes="0"/>
+                      <Component id="QuanLyKhachHang" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="BanHang7" min="-2" max="-2" attributes="0"/>
+                      <Component id="ThongKeDoanhThu" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -445,14 +448,14 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="BanHang1">
+            <Container class="javax.swing.JPanel" name="QuanLyNhanVien">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="2c" green="63" red="87" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BanHang1MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="QuanLyNhanVienMouseClicked"/>
               </Events>
 
               <Layout>
@@ -498,14 +501,14 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="BanHang5">
+            <Container class="javax.swing.JPanel" name="QuanLyHangHoa">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="2c" green="63" red="87" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BanHang5MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="QuanLyHangHoaMouseClicked"/>
               </Events>
 
               <Layout>
@@ -551,14 +554,14 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="BanHang6">
+            <Container class="javax.swing.JPanel" name="QuanLyKhachHang">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="2c" green="63" red="87" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BanHang6MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="QuanLyKhachHangMouseClicked"/>
               </Events>
 
               <Layout>
@@ -604,14 +607,14 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="BanHang7">
+            <Container class="javax.swing.JPanel" name="ThongKeDoanhThu">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="2c" green="63" red="87" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BanHang7MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ThongKeDoanhThuMouseClicked"/>
               </Events>
 
               <Layout>

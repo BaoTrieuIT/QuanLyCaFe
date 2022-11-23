@@ -7,6 +7,7 @@ package DAO;
 import EntityClass.DoUong;
 import Utils.JdbcHelper;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,37 +21,87 @@ public class DoUongDAO extends QuanLiCFDAO<DoUong, String> {
 
     @Override
     public void insert(DoUong e) {
-        JdbcHelper.update(Insert_SQL, 
+        JdbcHelper.update(Insert_SQL,
                 e.getMaMon(),
                 e.getMaNhaCC(),
                 e.getTenMon(),
                 e.getSizeMon(),
-                e.getGiaBan());
+                e.getGiaBan(),
+                e.getGiaNhap(),
+                e.getSoLuong(),
+                e.getNgayNhap(),
+                e.getNgayHetHan(),
+                e.getHinh(),
+                e.getGhiChuMon()
+        );
     }
 
     @Override
-    public void update(DoUong entity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void update(DoUong e) {
+        JdbcHelper.update(Update_SQL,
+                e.getMaNhaCC(),
+                e.getTenMon(),
+                e.getSizeMon(),
+                e.getGiaBan(),
+                e.getGiaNhap(),
+                e.getSoLuong(),
+                e.getNgayNhap(),
+                e.getNgayHetHan(),
+                e.getHinh(),
+                e.getGhiChuMon(),
+                e.getMaMon()
+        );
     }
 
     @Override
     public void delete(String key) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        JdbcHelper.update(Delete_SQL, key);
     }
 
     @Override
     public List<DoUong> selectAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return selectBySQL(SelectAll_SQL);
     }
 
     @Override
     public DoUong selectById(String key) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<DoUong> list = selectBySQL(SelectByID_SQL, key);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
     }
 
     @Override
     protected List<DoUong> selectBySQL(String sql, Object... args) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<DoUong> list = new ArrayList<>();
+        try {
+            ResultSet rs = JdbcHelper.query(sql, args);
+            while (rs.next()) {
+                DoUong e = new DoUong();
+                e.setMaMon(rs.getString("MaMon"));
+                e.setMaNhaCC(rs.getInt("MaNhaCC"));
+                e.setTenMon(rs.getString("TenMon"));
+                e.setSizeMon(rs.getString("Sizemon"));
+                e.setGiaBan(rs.getDouble("GiaBan"));
+                e.setGiaNhap(rs.getDouble("GiaNhap"));
+                e.setSoLuong(rs.getInt("SoLuong"));
+                e.setNgayNhap(rs.getDate("NgayNhap"));
+                e.setNgayHetHan(rs.getDate("NgayHetHan"));
+                e.setHinh(rs.getString("Hinh"));
+                e.setGhiChuMon(rs.getString("GhiChuMon"));
+                list.add(e);
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<DoUong> selectByKeytWord(String keyword) {
+        String sql = "Select * from DoUong where TenMon like ?";
+        return this.selectBySQL(sql, "%" + keyword + "%");
     }
 
 }

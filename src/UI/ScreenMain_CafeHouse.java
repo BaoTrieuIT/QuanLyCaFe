@@ -17,7 +17,7 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
 
         initComponents();
         setLocationRelativeTo(null);
-      
+
         init();
     }
 
@@ -48,16 +48,16 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
         BanHang = new javax.swing.JPanel();
         BanHangLabel = new javax.swing.JLabel();
         IconBanHang = new javax.swing.JLabel();
-        BanHang1 = new javax.swing.JPanel();
+        QuanLyNhanVien = new javax.swing.JPanel();
         BanHangLabel1 = new javax.swing.JLabel();
         IconBanHang1 = new javax.swing.JLabel();
-        BanHang5 = new javax.swing.JPanel();
+        QuanLyHangHoa = new javax.swing.JPanel();
         BanHangLabel5 = new javax.swing.JLabel();
         IconBanHang5 = new javax.swing.JLabel();
-        BanHang6 = new javax.swing.JPanel();
+        QuanLyKhachHang = new javax.swing.JPanel();
         BanHangLabel6 = new javax.swing.JLabel();
         IconBanHang6 = new javax.swing.JLabel();
-        BanHang7 = new javax.swing.JPanel();
+        ThongKeDoanhThu = new javax.swing.JPanel();
         BanHangLabel7 = new javax.swing.JLabel();
         IconBanHang7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -104,7 +104,7 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(IconNhanVien1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(IconThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(IconThongTin, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
         );
         ThongTinPanelLayout.setVerticalGroup(
             ThongTinPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,10 +252,10 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
             .addComponent(IconBanHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
 
-        BanHang1.setBackground(new java.awt.Color(135, 99, 44));
-        BanHang1.addMouseListener(new java.awt.event.MouseAdapter() {
+        QuanLyNhanVien.setBackground(new java.awt.Color(135, 99, 44));
+        QuanLyNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BanHang1MouseClicked(evt);
+                QuanLyNhanVienMouseClicked(evt);
             }
         });
 
@@ -266,27 +266,27 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
 
         IconBanHang1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/users.png"))); // NOI18N
 
-        javax.swing.GroupLayout BanHang1Layout = new javax.swing.GroupLayout(BanHang1);
-        BanHang1.setLayout(BanHang1Layout);
-        BanHang1Layout.setHorizontalGroup(
-            BanHang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BanHang1Layout.createSequentialGroup()
+        javax.swing.GroupLayout QuanLyNhanVienLayout = new javax.swing.GroupLayout(QuanLyNhanVien);
+        QuanLyNhanVien.setLayout(QuanLyNhanVienLayout);
+        QuanLyNhanVienLayout.setHorizontalGroup(
+            QuanLyNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QuanLyNhanVienLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(IconBanHang1)
                 .addGap(18, 18, 18)
                 .addComponent(BanHangLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        BanHang1Layout.setVerticalGroup(
-            BanHang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        QuanLyNhanVienLayout.setVerticalGroup(
+            QuanLyNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(BanHangLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(IconBanHang1, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
         );
 
-        BanHang5.setBackground(new java.awt.Color(135, 99, 44));
-        BanHang5.addMouseListener(new java.awt.event.MouseAdapter() {
+        QuanLyHangHoa.setBackground(new java.awt.Color(135, 99, 44));
+        QuanLyHangHoa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BanHang5MouseClicked(evt);
+                QuanLyHangHoaMouseClicked(evt);
             }
         });
 
@@ -297,27 +297,27 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
 
         IconBanHang5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/goods.png"))); // NOI18N
 
-        javax.swing.GroupLayout BanHang5Layout = new javax.swing.GroupLayout(BanHang5);
-        BanHang5.setLayout(BanHang5Layout);
-        BanHang5Layout.setHorizontalGroup(
-            BanHang5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BanHang5Layout.createSequentialGroup()
+        javax.swing.GroupLayout QuanLyHangHoaLayout = new javax.swing.GroupLayout(QuanLyHangHoa);
+        QuanLyHangHoa.setLayout(QuanLyHangHoaLayout);
+        QuanLyHangHoaLayout.setHorizontalGroup(
+            QuanLyHangHoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QuanLyHangHoaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(IconBanHang5)
                 .addGap(18, 18, 18)
                 .addComponent(BanHangLabel5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        BanHang5Layout.setVerticalGroup(
-            BanHang5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        QuanLyHangHoaLayout.setVerticalGroup(
+            QuanLyHangHoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(BanHangLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(IconBanHang5, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
         );
 
-        BanHang6.setBackground(new java.awt.Color(135, 99, 44));
-        BanHang6.addMouseListener(new java.awt.event.MouseAdapter() {
+        QuanLyKhachHang.setBackground(new java.awt.Color(135, 99, 44));
+        QuanLyKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BanHang6MouseClicked(evt);
+                QuanLyKhachHangMouseClicked(evt);
             }
         });
 
@@ -328,27 +328,27 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
 
         IconBanHang6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/users_group.png"))); // NOI18N
 
-        javax.swing.GroupLayout BanHang6Layout = new javax.swing.GroupLayout(BanHang6);
-        BanHang6.setLayout(BanHang6Layout);
-        BanHang6Layout.setHorizontalGroup(
-            BanHang6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BanHang6Layout.createSequentialGroup()
+        javax.swing.GroupLayout QuanLyKhachHangLayout = new javax.swing.GroupLayout(QuanLyKhachHang);
+        QuanLyKhachHang.setLayout(QuanLyKhachHangLayout);
+        QuanLyKhachHangLayout.setHorizontalGroup(
+            QuanLyKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QuanLyKhachHangLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(IconBanHang6)
                 .addGap(18, 18, 18)
                 .addComponent(BanHangLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        BanHang6Layout.setVerticalGroup(
-            BanHang6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        QuanLyKhachHangLayout.setVerticalGroup(
+            QuanLyKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(BanHangLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(IconBanHang6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        BanHang7.setBackground(new java.awt.Color(135, 99, 44));
-        BanHang7.addMouseListener(new java.awt.event.MouseAdapter() {
+        ThongKeDoanhThu.setBackground(new java.awt.Color(135, 99, 44));
+        ThongKeDoanhThu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BanHang7MouseClicked(evt);
+                ThongKeDoanhThuMouseClicked(evt);
             }
         });
 
@@ -359,19 +359,19 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
 
         IconBanHang7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/statistical.png"))); // NOI18N
 
-        javax.swing.GroupLayout BanHang7Layout = new javax.swing.GroupLayout(BanHang7);
-        BanHang7.setLayout(BanHang7Layout);
-        BanHang7Layout.setHorizontalGroup(
-            BanHang7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BanHang7Layout.createSequentialGroup()
+        javax.swing.GroupLayout ThongKeDoanhThuLayout = new javax.swing.GroupLayout(ThongKeDoanhThu);
+        ThongKeDoanhThu.setLayout(ThongKeDoanhThuLayout);
+        ThongKeDoanhThuLayout.setHorizontalGroup(
+            ThongKeDoanhThuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ThongKeDoanhThuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(IconBanHang7)
                 .addGap(18, 18, 18)
                 .addComponent(BanHangLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        BanHang7Layout.setVerticalGroup(
-            BanHang7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        ThongKeDoanhThuLayout.setVerticalGroup(
+            ThongKeDoanhThuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(IconBanHang7, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
             .addComponent(BanHangLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -383,11 +383,11 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BanHang7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BanHang1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ThongKeDoanhThu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(QuanLyNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BanHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BanHang5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BanHang6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(QuanLyHangHoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(QuanLyKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         kGradientPanel1Layout.setVerticalGroup(
@@ -396,13 +396,13 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(BanHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(BanHang1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(QuanLyNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(BanHang5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(QuanLyHangHoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(BanHang6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(QuanLyKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(BanHang7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ThongKeDoanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -430,7 +430,7 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
             .addGroup(kGradientPanel2Layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addComponent(ThanhNgangPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         kGradientPanel2Layout.setVerticalGroup(
@@ -456,7 +456,9 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -470,6 +472,7 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
 
     private void ThongTinPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ThongTinPanelMouseClicked
 //        DialogHelper.alert(this, "Đăng Nhập Với: "+ShareHelper.USER.getManv());
+        openThongTin();
     }//GEN-LAST:event_ThongTinPanelMouseClicked
 
     private void IconThongTinAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_IconThongTinAncestorAdded
@@ -485,34 +488,38 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
     }//GEN-LAST:event_IconThongTinAncestorAdded
 
     private void BanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BanHangMouseClicked
-//        if(DialogHelper.confirm(this, "Bạn thực sự muốn kết thúc?")){
-//            System.exit(0);
-//        }
+        openBanHang();
     }//GEN-LAST:event_BanHangMouseClicked
 
     private void DangXuatPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DangXuatPanelMouseClicked
         // TODO add your handling code here:
+        openDangXuat();
     }//GEN-LAST:event_DangXuatPanelMouseClicked
 
     private void TongQuanPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TongQuanPanelMouseClicked
         // TODO add your handling code here:
+        openTongQuan();
     }//GEN-LAST:event_TongQuanPanelMouseClicked
 
-    private void BanHang1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BanHang1MouseClicked
+    private void QuanLyNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QuanLyNhanVienMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_BanHang1MouseClicked
+        openNhanVien();
+    }//GEN-LAST:event_QuanLyNhanVienMouseClicked
 
-    private void BanHang5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BanHang5MouseClicked
+    private void QuanLyHangHoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QuanLyHangHoaMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_BanHang5MouseClicked
+        openHangHoa();
+    }//GEN-LAST:event_QuanLyHangHoaMouseClicked
 
-    private void BanHang6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BanHang6MouseClicked
+    private void QuanLyKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QuanLyKhachHangMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_BanHang6MouseClicked
+        openKhachHang();
+    }//GEN-LAST:event_QuanLyKhachHangMouseClicked
 
-    private void BanHang7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BanHang7MouseClicked
+    private void ThongKeDoanhThuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ThongKeDoanhThuMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_BanHang7MouseClicked
+        openThongKe();
+    }//GEN-LAST:event_ThongKeDoanhThuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -548,15 +555,10 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
             }
         });
 
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BanHang;
-    private javax.swing.JPanel BanHang1;
-    private javax.swing.JPanel BanHang5;
-    private javax.swing.JPanel BanHang6;
-    private javax.swing.JPanel BanHang7;
     private javax.swing.JLabel BanHangLabel;
     private javax.swing.JLabel BanHangLabel1;
     private javax.swing.JLabel BanHangLabel5;
@@ -574,7 +576,11 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
     private javax.swing.JLabel IconThongTin;
     private javax.swing.JLabel IconTongQuan;
     private javax.swing.JLabel LogoLabel;
+    private javax.swing.JPanel QuanLyHangHoa;
+    private javax.swing.JPanel QuanLyKhachHang;
+    private javax.swing.JPanel QuanLyNhanVien;
     private javax.swing.JPanel ThanhNgangPanel;
+    private javax.swing.JPanel ThongKeDoanhThu;
     private javax.swing.JPanel ThongTinPanel;
     private javax.swing.JLabel TongQuanLabel;
     private javax.swing.JPanel TongQuanPanel;
@@ -590,7 +596,7 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
     private void init() {
         this.setIconImage(XImage.getAppIcon());
         startDongHo();
-        
+
     }
 
     void startDongHo() {
@@ -603,5 +609,38 @@ public class ScreenMain_CafeHouse extends javax.swing.JFrame {
                 lbl_DongHo.setText(format.format(new java.util.Date()));
             }
         }).start();
+    }
+
+    private void openTongQuan() {
+        new About_CafeHouse(this, true).setVisible(true);
+    }
+
+    private void openDangXuat() {
+        this.dispose();
+        new LoginForm_CafeHouse(this, true).setVisible(true);
+    }
+
+    private void openThongTin() {
+       new ManageInformation(this, true).setVisible(true);
+    }
+
+    private void openBanHang() {
+       new ManageSale(this, true).setVisible(true);
+    }
+
+    private void openNhanVien() {
+       new ManageEmployee(this, true).setVisible(true);
+    }
+
+    private void openHangHoa() {
+        new ManageWareHouse(this, true).setVisible(true);
+    }
+
+    private void openKhachHang() {
+        new ManageCustomer(this, true).setVisible(true);
+    }
+
+    private void openThongKe() {
+        new ManageStatistics(this, true).setVisible(true);
     }
 }

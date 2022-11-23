@@ -33,12 +33,12 @@ public class HoaDonChiTietDAO extends QuanLiCFDAO<HoaDonChiTiet, Integer> {
     @Override
     public void update(HoaDonChiTiet entity) {
         JdbcHelper.update(Update_SQL,
-                entity.getMaHDCT(),
                 entity.getMaHD(),
                 entity.getMaMon(),
                 entity.getSoLuong(),
                 entity.getThanhTien(),
-                entity.getGhiChu());
+                entity.getGhiChu(),
+                entity.getMaHDCT());
     }
 
     @Override
