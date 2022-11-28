@@ -104,6 +104,7 @@ public class ManageWareHouse extends javax.swing.JDialog {
                 "Mã món", "Tên món", "Tên nhà cung cấp", "Size", "Giá bán", "Giá nhập", "Ngày nhập", "Ngày hết hạn", "Số lượng", "Ghi chú", "Hình"
             }
         ));
+        tblMenu.setRowHeight(100);
         tblMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblMenuMouseClicked(evt);

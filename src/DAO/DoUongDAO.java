@@ -81,6 +81,33 @@ public class DoUongDAO extends QuanLiCFDAO<DoUong, String> {
                 DoUong e = new DoUong();
                 e.setMaMon(rs.getString("MaMon"));
                 e.setMaNhaCC(rs.getInt("MaNhaCC"));
+//                e.setTenNhaCC(rs.getString("TenNhaCC"));
+                e.setTenMon(rs.getString("TenMon"));
+                e.setSizeMon(rs.getString("Sizemon"));
+                e.setGiaBan(rs.getDouble("GiaBan"));
+                e.setGiaNhap(rs.getDouble("GiaNhap"));
+                e.setSoLuong(rs.getInt("SoLuong"));
+                e.setNgayNhap(rs.getDate("NgayNhap"));
+                e.setNgayHetHan(rs.getDate("NgayHetHan"));
+                e.setHinh(rs.getString("Hinh"));
+                e.setGhiChuMon(rs.getString("GhiChuMon"));
+                list.add(e);
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    protected List<DoUong> selectBySQLInnerJoin(String sql, Object... args) {
+        List<DoUong> list = new ArrayList<>();
+        try {
+            ResultSet rs = JdbcHelper.query(sql, args);
+            while (rs.next()) {
+                DoUong e = new DoUong();
+                e.setMaMon(rs.getString("MaMon"));
+                e.setMaNhaCC(rs.getInt("MaNhaCC"));
                 e.setTenNhaCC(rs.getString("TenNhaCC"));
                 e.setTenMon(rs.getString("TenMon"));
                 e.setSizeMon(rs.getString("Sizemon"));
@@ -99,6 +126,8 @@ public class DoUongDAO extends QuanLiCFDAO<DoUong, String> {
             throw new RuntimeException(e);
         }
     }
+    
+    
 
     public List<DoUong> selectByKeytWord(String keyword) {
         String sql = "Select * from DoUong where TenMon like ?";
@@ -107,7 +136,7 @@ public class DoUongDAO extends QuanLiCFDAO<DoUong, String> {
 
     public List<DoUong> selectByKeytWordInnerJoin(String keyword) {
         String sql = "select * from DoUong du inner join NhaCungCap ncc on du.MaNhaCC = ncc.MaNhaCC where ncc.TenNhaCC like ?";
-        return this.selectBySQL(sql, "%" + keyword + "%");
+        return this.selectBySQLInnerJoin(sql, "%" + keyword + "%");
     }
 
 }

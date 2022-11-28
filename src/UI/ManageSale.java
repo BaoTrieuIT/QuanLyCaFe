@@ -97,7 +97,7 @@ public class ManageSale extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Mã Món", "Tên Món", "Size", "Giá ", "Ghi chú", "Hình"
+                "Mã Món", "Tên Món", "Size", "Giá ", "Hình", "Ghi chú"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -556,11 +556,9 @@ public class ManageSale extends javax.swing.JDialog {
     private void init() {
         fillToTable();
 
-
     }
 
     private void fillToTable() {
-  
 
         try {
             String keyword = txtTimMon.getText();
@@ -595,8 +593,7 @@ public class ManageSale extends javax.swing.JDialog {
                     du.getSizeMon(),
                     dcf.format(du.getGiaBan()),
                     du.getGhiChuMon(),
-                    AnhSanPham
-                };
+                    AnhSanPham,};
                 dtm.addRow(row);
             }
             tblMenu.setModel(dtm);
