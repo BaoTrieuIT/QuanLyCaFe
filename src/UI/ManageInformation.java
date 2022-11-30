@@ -7,6 +7,8 @@ package UI;
  */
 import DAO.NhanVienDAO;
 import Utils.Auth;
+import Utils.XImage;
+import java.io.File;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.*;
@@ -30,8 +32,9 @@ public class ManageInformation extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fileChooser = new javax.swing.JFileChooser();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txa_DiaChi = new javax.swing.JTextArea();
+        txt_DiaChi = new javax.swing.JTextArea();
         lbl_DienThoai = new javax.swing.JLabel();
         txt_DienThoai = new javax.swing.JTextField();
         lbl_MatKhauHienTai = new javax.swing.JLabel();
@@ -56,20 +59,20 @@ public class ManageInformation extends javax.swing.JDialog {
         txt_CCCD = new javax.swing.JTextField();
         lbl_CCCD = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lbl_Anh = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        txa_DiaChi.setColumns(10);
-        txa_DiaChi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txa_DiaChi.setRows(2);
-        txa_DiaChi.setAutoscrolls(false);
-        txa_DiaChi.addFocusListener(new java.awt.event.FocusAdapter() {
+        txt_DiaChi.setColumns(10);
+        txt_DiaChi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txt_DiaChi.setRows(2);
+        txt_DiaChi.setAutoscrolls(false);
+        txt_DiaChi.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txa_DiaChiFocusLost(evt);
+                txt_DiaChiFocusLost(evt);
             }
         });
-        jScrollPane2.setViewportView(txa_DiaChi);
+        jScrollPane2.setViewportView(txt_DiaChi);
 
         lbl_DienThoai.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbl_DienThoai.setForeground(new java.awt.Color(0, 0, 153));
@@ -247,20 +250,26 @@ public class ManageInformation extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        lbl_Anh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_AnhMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                .addComponent(lbl_Anh, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                .addComponent(lbl_Anh, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -351,8 +360,7 @@ public class ManageInformation extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dat_NgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_TenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -363,8 +371,8 @@ public class ManageInformation extends javax.swing.JDialog {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txt_TenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txt_CCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnl_Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -372,7 +380,7 @@ public class ManageInformation extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txa_DiaChiFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txa_DiaChiFocusLost
+    private void txt_DiaChiFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_DiaChiFocusLost
         // TODO add your handling code here:
 //        if(!checkDiaChi()){
 //            txa_DiaChi.setBackground(Color.yellow);
@@ -380,7 +388,7 @@ public class ManageInformation extends javax.swing.JDialog {
 //        else {
 //            txa_DiaChi.setBackground(Color.white);
 //        }
-    }//GEN-LAST:event_txa_DiaChiFocusLost
+    }//GEN-LAST:event_txt_DiaChiFocusLost
 
     private void txt_DienThoaiFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_DienThoaiFocusLost
         // TODO add your handling code here:
@@ -493,6 +501,11 @@ public class ManageInformation extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_CCCDFocusLost
 
+    private void lbl_AnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_AnhMouseClicked
+        // TODO add your handling code here:
+        this.chonAnh();
+    }//GEN-LAST:event_lbl_AnhMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -540,9 +553,10 @@ public class ManageInformation extends javax.swing.JDialog {
     private javax.swing.JButton btn_Huy;
     private javax.swing.JCheckBox chk_CapNhatMatKhau;
     private com.toedter.calendar.JDateChooser dat_NgaySinh;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbl_Anh;
     private javax.swing.JLabel lbl_CCCD;
     private javax.swing.JLabel lbl_DiaChi;
     private javax.swing.JLabel lbl_DienThoai;
@@ -556,8 +570,8 @@ public class ManageInformation extends javax.swing.JDialog {
     private javax.swing.JPanel pnl_Button;
     private javax.swing.JRadioButton rad_Nam;
     private javax.swing.JRadioButton rad_Nu;
-    private javax.swing.JTextArea txa_DiaChi;
     private javax.swing.JTextField txt_CCCD;
+    private javax.swing.JTextArea txt_DiaChi;
     private javax.swing.JTextField txt_DienThoai;
     private javax.swing.JTextField txt_HoTen;
     private javax.swing.JPasswordField txt_MatKhauHienTai;
@@ -580,6 +594,19 @@ public class ManageInformation extends javax.swing.JDialog {
         }
         dat_NgaySinh.setDate(Auth.user.getNgaySinhNV());
         txt_CCCD.setText(Auth.user.getCCCD());
-        txa_DiaChi.setText(Auth.user.getDiaChi());
+        txt_DiaChi.setText(Auth.user.getDiaChi());
+        if(Auth.user.getHinh() != null){
+            lbl_Anh.setToolTipText(Auth.user.getHinh());
+            lbl_Anh.setIcon(XImage.readAvatars(Auth.user.getHinh()));
+        }
+    }
+    void chonAnh(){
+        if(fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
+            File file = fileChooser.getSelectedFile();
+            XImage.save(file);
+            ImageIcon icon = XImage.readAvatars(file.getName());
+            lbl_Anh.setIcon(icon);
+            lbl_Anh.setToolTipText(file.getName());
+        }
     }
 }

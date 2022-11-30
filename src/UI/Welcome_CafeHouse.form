@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="0"/>
     <Property name="undecorated" type="boolean" value="true"/>
@@ -48,24 +48,23 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="txtLoading" min="-2" pref="240" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="txtPercent" min="-2" pref="127" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtLoading_Tittle" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="278" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" pref="175" max="-2" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="0" pref="295" max="32767" attributes="0"/>
+                          <Component id="jLabel1" min="-2" pref="175" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="txtLoading" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="txtPercent" min="-2" pref="127" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="txtLoading_Tittle" min="-2" pref="651" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -121,6 +120,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Vladimir Script" size="48" style="0"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Caf&#xe9; House"/>
           </Properties>
         </Component>

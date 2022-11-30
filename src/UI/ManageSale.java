@@ -8,6 +8,8 @@ import DAO.DoUongDAO;
 import DAO.HoaDonChiTietDAO;
 import DAO.HoaDonDAO;
 import EntityClass.DoUong;
+import Utils.Auth;
+import Utils.ChuyenDoi;
 import Utils.MsgBox;
 import java.util.*;
 import javax.swing.*;
@@ -149,21 +151,25 @@ public class ManageSale extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Tên Món :");
 
+        txtTenMon.setEditable(false);
         txtTenMon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Mã món  : ");
 
+        txtMaMon.setEditable(false);
         txtMaMon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Số lượng :");
 
         txtSoLuong.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtSoLuong.setText("0");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Size :");
 
+        txtSize.setEditable(false);
         txtSize.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         tblHoaDonChiTiet.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -197,6 +203,7 @@ public class ManageSale extends javax.swing.JDialog {
 
         txtTongTien.setEditable(false);
         txtTongTien.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtTongTien.setText("0");
         txtTongTien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTongTienActionPerformed(evt);
@@ -207,11 +214,18 @@ public class ManageSale extends javax.swing.JDialog {
         jLabel9.setText("Tiền khách trả :");
 
         txtTienKhachTra.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtTienKhachTra.setText("0");
+        txtTienKhachTra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTienKhachTraKeyReleased(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel10.setText("Tiền trả khách :");
 
         txtTienTraKhach.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtTienTraKhach.setText("0");
         txtTienTraKhach.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTienTraKhachKeyReleased(evt);
@@ -227,7 +241,7 @@ public class ManageSale extends javax.swing.JDialog {
             }
         });
 
-        btnThanhToan.setBackground(new java.awt.Color(0, 153, 255));
+        btnThanhToan.setBackground(new java.awt.Color(102, 153, 255));
         btnThanhToan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnThanhToan.setText("Xuất hoá đơn");
         btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
@@ -278,7 +292,7 @@ public class ManageSale extends javax.swing.JDialog {
                 .addGap(26, 26, 26))
         );
 
-        btnThemThanhToan.setBackground(new java.awt.Color(255, 153, 0));
+        btnThemThanhToan.setBackground(new java.awt.Color(255, 102, 102));
         btnThemThanhToan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnThemThanhToan.setText("THÊM SP VÀO GIỎ HÀNG");
         btnThemThanhToan.addActionListener(new java.awt.event.ActionListener() {
@@ -299,6 +313,7 @@ public class ManageSale extends javax.swing.JDialog {
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Giá :");
 
+        txtGia.setEditable(false);
         txtGia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -307,11 +322,13 @@ public class ManageSale extends javax.swing.JDialog {
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Ghi chú :");
 
+        txtGhiChu.setEditable(false);
         txtGhiChu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Mã NV :");
 
+        txtMaNV.setEditable(false);
         txtMaNV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -432,6 +449,10 @@ public class ManageSale extends javax.swing.JDialog {
 
     private void tblMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMenuMouseClicked
         // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            this.row = tblMenu.getSelectedRow();
+            this.edit();
+        }
     }//GEN-LAST:event_tblMenuMouseClicked
 
     private void tblHoaDonChiTietMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonChiTietMouseClicked
@@ -460,12 +481,23 @@ public class ManageSale extends javax.swing.JDialog {
 
     private void btnThemThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemThanhToanActionPerformed
         // TODO add your handling code here:
-
+        this.thanhToanSP();
     }//GEN-LAST:event_btnThemThanhToanActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
+        this.clearForm();
+        this.TaoMoiHD();
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void txtTienKhachTraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienKhachTraKeyReleased
+        // TODO add your handling code here:
+        double tienkhachtra, tientrakhach, thanhtien;
+        thanhtien = ChuyenDoi.ChuyenTien(txtTongTien.getText());
+        tienkhachtra = Double.parseDouble(txtTienKhachTra.getText());
+        tientrakhach = tienkhachtra - thanhtien;
+        txtTienTraKhach.setText(ChuyenDoi.DinhDangTien(tientrakhach));
+    }//GEN-LAST:event_txtTienKhachTraKeyReleased
 
     /**
      * @param args the command line arguments
@@ -555,7 +587,7 @@ public class ManageSale extends javax.swing.JDialog {
 
     private void init() {
         fillToTable();
-
+//        hienNguoiDung();
     }
 
     private void fillToTable() {
@@ -591,7 +623,7 @@ public class ManageSale extends javax.swing.JDialog {
                     du.getMaMon(),
                     du.getTenMon(),
                     du.getSizeMon(),
-                    dcf.format(du.getGiaBan()),
+                    ChuyenDoi.DinhDangTien(du.getGiaBan()),
                     du.getGhiChuMon(),
                     AnhSanPham,};
                 dtm.addRow(row);
@@ -600,6 +632,80 @@ public class ManageSale extends javax.swing.JDialog {
         } catch (Exception e) {
             MsgBox.alert(this, "Lỗi truy vấn: " + e.toString());
         }
+    }
+
+    void hienNguoiDung() {
+        if (Auth.user != null) {
+            txtMaNV.setText(Auth.user.getMaNV());
+        }
+    }
+
+    private void edit() {
+        String mamon = (String) tblMenu.getValueAt(this.row, 0);
+        DoUong du = dao.selectById(mamon);
+                 txtSoLuong.setText("1");
+
+        this.setForm(du);
+    }
+
+    void setForm(DoUong du) {
+        txtMaMon.setText(du.getMaMon());
+        txtTenMon.setText(du.getTenMon());
+        txtGia.setText(String.valueOf(du.getGiaBan()));
+        txtSize.setText(du.getSizeMon());
+    }
+
+    void clearForm() {
+        DoUong du = new DoUong();
+        txtSoLuong.setText("0");
+        this.setForm(du);
+        txtTongTien.setText("0");
+        txtTienKhachTra.setText("0");
+        txtTienTraKhach.setText("0");
+    }
+
+    private void TaoMoiHD() {
+        DefaultTableModel tbModel = (DefaultTableModel) tblHoaDonChiTiet.getModel();
+        tbModel.setRowCount(0);
+    }
+
+    private void thanhToanSP() {
+        String maMon = txtMaMon.getText();
+        String tenMon = txtTenMon.getText();
+        String Size = txtSize.getText();
+        int soLuong = Integer.parseInt(txtSoLuong.getText());
+        double donGia = Double.parseDouble(txtGia.getText());
+        double thanhTien = donGia * soLuong;
+        String ghiChu = txtGhiChu.getText();
+        ThemSanPhamTbHD(maMon, tenMon, Size, soLuong, donGia, thanhTien, ghiChu);
+        txtTongTien.setText(ChuyenDoi.DinhDangTien(TinhTien()));
+    }
+
+    private void ThemSanPhamTbHD(String maMon, String tenMon, String Size, int soLuong,
+            double donGia, double thanhtien, String ghiChu) {
+
+        DefaultTableModel tbModel = (DefaultTableModel) tblHoaDonChiTiet.getModel();
+
+        Object obj[] = new Object[8];
+
+        obj[0] = tbModel.getRowCount() + 1;
+        obj[1] = maMon;
+        obj[2] = tenMon;
+        obj[3] = Size;
+        obj[4] = soLuong;
+        obj[5] = ChuyenDoi.DinhDangTien(donGia);
+        obj[6] = ChuyenDoi.DinhDangTien(thanhtien);
+        obj[7] = ghiChu;
+        tbModel.addRow(obj);
+    }
+
+    private double TinhTien() {
+        double tongTien = 0;
+        for (int i = 0; i < tblHoaDonChiTiet.getRowCount(); i++) {
+            tongTien += ChuyenDoi.ChuyenTien(tblHoaDonChiTiet.getValueAt(i, 6).toString());
+        }
+
+        return tongTien;
     }
 
 }

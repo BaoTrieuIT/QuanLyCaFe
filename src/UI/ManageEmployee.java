@@ -628,7 +628,7 @@ public class ManageEmployee extends javax.swing.JDialog {
             for (NhanVien nv : list) {
                 ImageIcon AnhSanPham = null;
                 if (nv.getHinh() != null) {
-                    AnhSanPham = new ImageIcon(new ImageIcon(System.getProperty("user.dir") + "/avartars/" + nv.getHinh()).getImage().getScaledInstance(75, 75, java.awt.Image.SCALE_SMOOTH));
+                    AnhSanPham = new ImageIcon(new ImageIcon(System.getProperty("user.dir") + "/avatars/" + nv.getHinh()).getImage().getScaledInstance(75, 75, java.awt.Image.SCALE_SMOOTH));
 
                 }
                 Object[] row = {

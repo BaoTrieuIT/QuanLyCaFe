@@ -25,7 +25,7 @@ public class XImage {
     }
 
     public static void save(File src) {
-        File dst = new File("logos", src.getName());
+        File dst = new File("image", src.getName());
         if (!dst.exists()) {
             dst.mkdirs();
             // tạo thư mục logo nếu chưa tồn tại
@@ -41,8 +41,12 @@ public class XImage {
     }
 
     public static ImageIcon read(String fileName) {
-        File path = new File("logos", fileName);
+        File path = new File("image", fileName);
         return new ImageIcon(new ImageIcon(path.getAbsolutePath()).getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
     }
 
+    public static ImageIcon readAvatars(String fileName) {
+        File path = new File("avatars", fileName);
+        return new ImageIcon(new ImageIcon(path.getAbsolutePath()).getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
+    }
 }

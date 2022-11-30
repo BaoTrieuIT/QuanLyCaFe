@@ -1,6 +1,8 @@
 package UI;
 
 //import Utils.XImage;
+import Utils.XImage;
+
 /**
  *
  * @author Norcirpac
@@ -47,7 +49,7 @@ public class ChangePassword extends javax.swing.JDialog {
         lblIcon = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
         kGradientPanel1.setkEndColor(new java.awt.Color(245, 245, 245));
@@ -89,11 +91,9 @@ public class ChangePassword extends javax.swing.JDialog {
         });
 
         txtPassWord.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtPassWord.setText("123456");
         txtPassWord.setBorder(null);
 
         txtPassWord3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtPassWord3.setText("123456");
         txtPassWord3.setBorder(null);
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
@@ -108,6 +108,7 @@ public class ChangePassword extends javax.swing.JDialog {
             }
         });
 
+        txtUserName.setEditable(false);
         txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtUserName.setText("NV1");
         txtUserName.setToolTipText("");
@@ -148,7 +149,6 @@ public class ChangePassword extends javax.swing.JDialog {
         jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
 
         txtPassWord4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtPassWord4.setText("123456");
         txtPassWord4.setBorder(null);
 
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/hide.png"))); // NOI18N
@@ -180,10 +180,9 @@ public class ChangePassword extends javax.swing.JDialog {
                             .addComponent(lblIcon3)))
                     .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jSeparator1)
-                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUserName)
-                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                        .addComponent(txtUserName)
+                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
                         .addGroup(kGradientPanel2Layout.createSequentialGroup()
                             .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,8 +248,7 @@ public class ChangePassword extends javax.swing.JDialog {
                 .addGap(36, 36, 36)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -278,7 +276,7 @@ public class ChangePassword extends javax.swing.JDialog {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-        //        huyBo();
+        huyBo();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void lblIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIconMouseClicked
@@ -361,8 +359,13 @@ public class ChangePassword extends javax.swing.JDialog {
     private javax.swing.JPasswordField txtPassWord4;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
-private void init() {
+    
+    private void init() {
         this.setLocationRelativeTo(null);
-//        this.setIconImage(XImage.getAppIcon());
+        this.setIconImage(XImage.getAppIcon());
+    }
+
+    private void huyBo() {
+        this.dispose();
     }
 }

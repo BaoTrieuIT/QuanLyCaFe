@@ -4,6 +4,7 @@ package UI;
 import DAO.KhachHangDAO;
 import EntityClass.KhachHang;
 import Utils.ChuyenDoi;
+import Utils.XImage;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -228,7 +229,7 @@ public class ManageCustomer extends javax.swing.JDialog {
                                 .addComponent(txtTenKH)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
                                 .addComponent(txtEmail))
-                            .addComponent(txtSDT, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
+                            .addComponent(txtSDT, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
                             .addComponent(txtNgaySinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -269,7 +270,7 @@ public class ManageCustomer extends javax.swing.JDialog {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabs.addTab("CẬP NHẬT", jPanel1);
@@ -292,6 +293,11 @@ public class ManageCustomer extends javax.swing.JDialog {
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         txtTimkiem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtTimkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTimkiemActionPerformed(evt);
+            }
+        });
         txtTimkiem.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTimkiemKeyReleased(evt);
@@ -335,7 +341,7 @@ public class ManageCustomer extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 793, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -344,28 +350,28 @@ public class ManageCustomer extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         tabs.addTab("DANH SÁCH", jPanel2);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Quản Lý Khách Hàng");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(295, 295, 295)
-                .addComponent(jLabel1)
-                .addContainerGap(295, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(tabs)
-                    .addContainerGap()))
+                    .addComponent(tabs)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,8 +381,8 @@ public class ManageCustomer extends javax.swing.JDialog {
                 .addContainerGap(563, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(57, Short.MAX_VALUE)
-                    .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(62, Short.MAX_VALUE)
+                    .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()))
         );
 
@@ -405,30 +411,30 @@ public class ManageCustomer extends javax.swing.JDialog {
 
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
         // TODO add your handling code here:
-//        this.first();
+        this.first();
     }//GEN-LAST:event_btnFirstActionPerformed
 
     private void btnPreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreActionPerformed
         // TODO add your handling code here:
-//        this.prev();
+        this.prev();
     }//GEN-LAST:event_btnPreActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         // TODO add your handling code here:
-//        this.next();
+        this.next();
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
         // TODO add your handling code here:
-//        this.last();
+        this.last();
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void tblKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhachHangMouseClicked
         // TODO add your handling code here:
-//        if(evt.getClickCount() == 2){
-//            this.row = tblKhachHang.getSelectedRow();
-//            this.edit();
-//        }
+        if (evt.getClickCount() == 2) {
+            this.row = tblKhachHang.getSelectedRow();
+            this.edit();
+        }
     }//GEN-LAST:event_tblKhachHangMouseClicked
 
     private void txtTimkiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimkiemKeyReleased
@@ -440,6 +446,10 @@ public class ManageCustomer extends javax.swing.JDialog {
         // TODO add your handling code here:
 //        this.timKiem();
     }//GEN-LAST:event_btnTimActionPerformed
+
+    private void txtTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimkiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTimkiemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -521,10 +531,12 @@ public class ManageCustomer extends javax.swing.JDialog {
     private javax.swing.JTextField txtTimkiem;
     // End of variables declaration//GEN-END:variables
     KhachHangDAO dao = new KhachHangDAO();
+    int row = -1;
 
     private void init() {
         this.setLocationRelativeTo(null);
-//        this.setIconImage(XImage.getAppIcon());
+        this.setIconImage(XImage.getAppIcon());
+        tblKhachHang.setDefaultEditor(Object.class, null);
         fillToTable();
     }
 
@@ -540,6 +552,65 @@ public class ManageCustomer extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    void edit() {
+        Integer makh = (Integer) tblKhachHang.getValueAt(this.row, 0);
+        KhachHang kh = dao.selectById(makh);
+        this.setForm(kh);
+        this.updateStatus();
+        tabs.setSelectedIndex(0);
+    }
+
+    void setForm(KhachHang kh) {
+        txtMaKH.setText(String.valueOf(kh.getMaKH()));
+        txtTenKH.setText(kh.getTenKH());
+        txtDiaChi.setText(kh.getDiaChi());
+        txtEmail.setText(kh.getEmail());
+        txtSDT.setText(kh.getSDT());
+        txtNgaySinh.setDate(kh.getNgaySinh());
+        rdoNam.setSelected(kh.getGioiTinh());
+        rdoNu.setSelected(!kh.getGioiTinh());
+    }
+
+    private void updateStatus() {
+        boolean edit = (this.row >= 0);
+        boolean first = (this.row == 0);
+        boolean last = (this.row == tblKhachHang.getRowCount() - 1);
+        //trang thai form
+        txtMaKH.setEditable(!edit);
+        btnThem.setEnabled(!edit);
+        btnSua.setEnabled(edit);
+        btnXoa.setEnabled(edit);
+        //Trang thai dieu huong
+        btnFirst.setEnabled(edit && !first);
+        btnPre.setEnabled(edit && !first);
+        btnNext.setEnabled(edit && !last);
+        btnLast.setEnabled(edit && !last);
+    }
+
+    void first() {
+        this.row = 0;
+        this.edit();
+    }
+
+    void last() {
+        this.row = tblKhachHang.getRowCount() - 1;
+        this.edit();
+    }
+
+    void prev() {
+        if (this.row > 0) {
+            this.row--;
+            this.edit();
+        }
+    }
+
+    void next() {
+        if (this.row < tblKhachHang.getRowCount() - 1) {
+            this.row++;
+            this.edit();
         }
     }
 
