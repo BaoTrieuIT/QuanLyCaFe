@@ -13,7 +13,7 @@ import java.util.List;
 
 public class HoaDonChiTietDAO extends QuanLiCFDAO<HoaDonChiTiet, Integer> {
 
-    String Insert_SQL = "insert into HOADONCHITIET (MaHDCT, MaHD, MaMon, Soluong, ThanhTien, GhiChu) values (?,?,?,?,?,?)";
+    String Insert_SQL = "insert into HOADONCHITIET (MaHD, MaMon, Soluong, ThanhTien, GhiChu) values (?,?,?,?,?)";
     String Update_SQL = "update HOADONCHITIET set MaHD = ?, MaMon = ?, Soluong = ?, ThanhTien = ?, GhiChu = ? where MaHDCT = ? ";
     String Delete_SQL = "delete from HOADONCHITIET where MaHDCT = ?";
     String SelectAll_SQL = "select * from HOADONCHITIET";
@@ -22,7 +22,6 @@ public class HoaDonChiTietDAO extends QuanLiCFDAO<HoaDonChiTiet, Integer> {
     @Override
     public void insert(HoaDonChiTiet entity) {
         JdbcHelper.update(Insert_SQL,
-                entity.getMaHDCT(),
                 entity.getMaHD(),
                 entity.getMaMon(),
                 entity.getSoLuong(),

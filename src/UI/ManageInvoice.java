@@ -3,10 +3,17 @@ package UI;
 //import Utils.XImage;
 import DAO.HoaDonDAO;
 import EntityClass.HoaDon;
+import Utils.Auth;
 import Utils.ChuyenDoi;
 import Utils.MsgBox;
+import Utils.XImage;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -81,6 +88,14 @@ public class ManageInvoice extends javax.swing.JDialog {
         btnXoaHD.setBackground(new java.awt.Color(255, 0, 0));
         btnXoaHD.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnXoaHD.setText("Xóa ");
+        btnXoaHD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnXoaHDMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnXoaHDMouseExited(evt);
+            }
+        });
         btnXoaHD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaHDActionPerformed(evt);
@@ -129,9 +144,9 @@ public class ManageInvoice extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnXoaHD)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -144,13 +159,30 @@ public class ManageInvoice extends javax.swing.JDialog {
 
     private void txtTimKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKeyReleased
         // TODO add your handling code here:
-//        this.timKiem();
+        this.timKiem();
     }//GEN-LAST:event_txtTimKeyReleased
 
     private void btnXoaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaHDActionPerformed
-        // TODO add your handling code here:
-//        this.removeHoaDon();
+        try {
+            // TODO add your handling code here:
+            this.removeHoaDon();
+        } catch (SQLException ex) {
+            MsgBox.alert(this, ex.getMessage());
+        }
     }//GEN-LAST:event_btnXoaHDActionPerformed
+
+    private void btnXoaHDMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaHDMouseEntered
+        // TODO add your handling code here:
+        btnXoaHD.setBackground(Color.yellow);
+        btnXoaHD.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnXoaHD.setForeground(Color.blue);
+    }//GEN-LAST:event_btnXoaHDMouseEntered
+
+    private void btnXoaHDMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaHDMouseExited
+        // TODO add your handling code here:[255,0,0]
+        btnXoaHD.setBackground(new Color(255, 0, 0));
+        btnXoaHD.setForeground(new Color(187, 187, 187));
+    }//GEN-LAST:event_btnXoaHDMouseExited
 
     /**
      * @param args the command line arguments
@@ -206,7 +238,7 @@ public class ManageInvoice extends javax.swing.JDialog {
 
     private void init() {
         this.setLocationRelativeTo(null);
-//        this.setIconImage(XImage.getAppIcon());
+        this.setIconImage(XImage.getAppIcon());
         fillToTable();
     }
 
@@ -215,13 +247,12 @@ public class ManageInvoice extends javax.swing.JDialog {
         model.setRowCount(0);
         try {
             String keyword = txtTim.getText();
-            List<HoaDon> list = (List<HoaDon>) dao.selectById(keyword);
+            List<HoaDon> list = dao.selectByKeytWord(keyword);
             for (HoaDon hd : list) {
                 Object[] row = {
                     tblHoaDon.getRowCount() + 1,
                     hd.getMaHD(),
                     hd.getMaNV(),
-                    //                    hd.getS(),
                     ChuyenDoi.toString(hd.getNgayLapHD(), "dd/MM/yyyy"),
                     dcf.format(hd.getTongTienHD()),
                     hd.getGhiChu()
@@ -230,6 +261,29 @@ public class ManageInvoice extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             MsgBox.alert(this, "Lỗi truy vấn: " + e.toString());
+        }
+    }
+
+    private void timKiem() {
+        fillToTable();
+    }
+
+    private void removeHoaDon() throws SQLException {
+        if (!Auth.isManager()) {
+            MsgBox.alert(this, "Bạn không có quyền xóa hoá đơn !!!");
+        } else {
+            if (MsgBox.confirm(this, "Bạn muốn xóa tất cả hoá đơn không ??")) {
+//                for (int row : tblHoaDon.getSelectedRows()) {
+//                    int mahd =  Integer.parseInt(tblHoaDon.getValueAt(row, 1).toString());
+//                    dao.delete(mahd);
+//                }
+                for (int i = 0; i < tblHoaDon.getRowCount(); i++) {
+                    int mahd = Integer.parseInt(tblHoaDon.getValueAt(i, 1).toString());
+                    dao.delete(mahd);
+                }
+                dao.ResetHoaDon();
+                this.fillToTable();
+            }
         }
     }
 }

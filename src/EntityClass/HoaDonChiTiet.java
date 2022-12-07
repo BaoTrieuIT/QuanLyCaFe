@@ -12,12 +12,13 @@ import java.util.HashMap;
  * @author Admin
  */
 public class HoaDonChiTiet {
-        private int MaHDCT ;
-	private int MaHD ;
-	private String MaMon ;
-	private int SoLuong ;
-	private double ThanhTien;
-        private String GhiChu;
+
+    private int MaHDCT;
+    private int MaHD;
+    private String MaMon;
+    private int SoLuong;
+    private double ThanhTien;
+    private String GhiChu;
 
     public int getMaHDCT() {
         return MaHDCT;
@@ -66,6 +67,5 @@ public class HoaDonChiTiet {
     public void setGhiChu(String GhiChu) {
         this.GhiChu = GhiChu;
     }
-        
 
- }
+}

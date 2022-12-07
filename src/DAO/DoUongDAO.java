@@ -135,8 +135,9 @@ public class DoUongDAO extends QuanLiCFDAO<DoUong, String> {
     }
 
     public List<DoUong> selectByKeytWordInnerJoin(String keyword) {
-        String sql = "select * from DoUong du inner join NhaCungCap ncc on du.MaNhaCC = ncc.MaNhaCC where ncc.TenNhaCC like ?";
-        return this.selectBySQLInnerJoin(sql, "%" + keyword + "%");
+        String sql = "select * from DoUong du inner join NhaCungCap ncc on du.MaNhaCC = ncc.MaNhaCC where ncc.TenNhaCC like N'%" + keyword + "%' "
+                + "or du.TenMon like N'%" + keyword + "%' ";
+        return this.selectBySQLInnerJoin(sql);
     }
 
 }

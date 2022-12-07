@@ -13,7 +13,7 @@ import java.util.List;
 
 public class KhachHangDAO extends QuanLiCFDAO<KhachHang, Integer> {
 
-    String Insert_SQL = "insert into KhachHang (MaKH, TenKH, GioiTinh, DiaChi, NgaySinh, Email, SoDT)  values (?,?,?,?,?,?,?)";
+    String Insert_SQL = "insert into KhachHang (TenKH, GioiTinh, DiaChi, NgaySinh, Email, SoDT)  values (?,?,?,?,?,?)";
     String Update_SQL = "update KhachHang set TenKH = ?, GioiTinh = ?, DiaChi = ?, NgaySinh = ?, Email = ?, SoDT = ? where MaKH = ? ";
     String Delete_SQL = "delete from KhachHang where MaKH = ?";
     String SelectAll_SQL = "select * from KhachHang";
@@ -22,7 +22,6 @@ public class KhachHangDAO extends QuanLiCFDAO<KhachHang, Integer> {
     @Override
     public void insert(KhachHang e) {
         JdbcHelper.update(Insert_SQL,
-                e.getMaKH(),
                 e.getTenKH(),
                 e.getGioiTinh(),
                 e.getDiaChi(),
@@ -88,7 +87,25 @@ public class KhachHangDAO extends QuanLiCFDAO<KhachHang, Integer> {
     }
 
     public List<KhachHang> selectByKeytWord(String keyword) {
-        String sql = "Select * from KhachHang where TenKH like ?";
-        return this.selectBySQL(sql, "%" + keyword + "%");
+        String sql = "Select * from KhachHang where TenKH like N'%" + keyword + "%'  "
+                + "OR SoDT like N'%" + keyword + "%' "
+                + "Or Email like N'%" + keyword + "%' ";
+        return this.selectBySQL(sql);
+    }
+
+    public boolean kiemEmail(String Email) {
+        String ChuoiDaXuLy = Email.substring(0, Email.indexOf("@"));
+        String sql = "SELECT * FROM KhachHang WHERE Email LIKE ?";
+        List<KhachHang> list = selectBySQL(sql, ChuoiDaXuLy + "%");
+        if (list.size() < 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean kiemSDT(String SDT){
+        String sql = "SELECT * FROM KhachHang WHERE SoDT = ?";
+        List<KhachHang> list = selectBySQL(sql, SDT);
+        return list.size() < 1;
     }
 }

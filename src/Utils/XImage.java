@@ -45,8 +45,42 @@ public class XImage {
         return new ImageIcon(new ImageIcon(path.getAbsolutePath()).getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
     }
 
+     public static void saveAvartars(File src) {
+        File dst = new File("avatars", src.getName());
+        if (!dst.exists()) {
+            dst.mkdirs();
+            // tạo thư mục logo nếu chưa tồn tại
+        }
+        try {
+            Path from = Paths.get(src.getAbsolutePath());
+            Path to = Paths.get(dst.getAbsolutePath());
+            Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
+            // Copy file vào thư mục logo
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static ImageIcon readAvatars(String fileName) {
         File path = new File("avatars", fileName);
+        return new ImageIcon(new ImageIcon(path.getAbsolutePath()).getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
+    }
+    public static void saveProducts(File src) {
+        File dst = new File("products", src.getName());
+        if (!dst.exists()) {
+            dst.mkdirs();
+            // tạo thư mục logo nếu chưa tồn tại
+        }
+        try {
+            Path from = Paths.get(src.getAbsolutePath());
+            Path to = Paths.get(dst.getAbsolutePath());
+            Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
+            // Copy file vào thư mục logo
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static ImageIcon readProducts(String fileName) {
+        File path = new File("products", fileName);
         return new ImageIcon(new ImageIcon(path.getAbsolutePath()).getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
     }
 }

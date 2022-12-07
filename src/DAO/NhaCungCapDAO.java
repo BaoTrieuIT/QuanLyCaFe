@@ -13,8 +13,8 @@ import java.util.List;
 
 public class NhaCungCapDAO extends QuanLiCFDAO<NhaCungCap, Integer> {
 
-    String Insert_SQL = "insert into NhaCungCap (MaNhaCC, TenNhaCC, SDT, DiaChi, NguoiLienHe, GhiChu)  values (?,?,?,?,?,?)";
-    String Update_SQL = "update NhaCungCap set  TenNhaCC, SDT, DiaChi, NguoiLienHe, GhiChu where MaNhaCC = ? ";
+    String Insert_SQL = "insert into NhaCungCap ( TenNhaCC, SDT, DiaChi, NguoiLienHe, GhiChu)  values (?,?,?,?,?)";
+    String Update_SQL = "update NhaCungCap set  TenNhaCC = ?, SDT = ?, DiaChi = ?, NguoiLienHe = ?, GhiChu = ? where MaNhaCC = ? ";
     String Delete_SQL = "delete from NhaCungCap where MaNhaCC = ?";
     String SelectAll_SQL = "select * from NhaCungCap";
     String SelectByID_SQL = "select * from NhaCungCap where MaNhaCC=?";
@@ -83,5 +83,24 @@ public class NhaCungCapDAO extends QuanLiCFDAO<NhaCungCap, Integer> {
             throw new RuntimeException(e);
         }
     }
+
+    public String selectTenNhaCC(String key) {
+        String sql = "select * from NHACUNGCAP where TenNhaCC = ?";
+        List<NhaCungCap> list = selectBySQL(sql, key);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0).getTenNhaCC();
+    }
+    public int selectMaNhaCC(String key) {
+        String sql = "select * from NHACUNGCAP where TenNhaCC = ?";
+        List<NhaCungCap> list = selectBySQL(sql, key);
+        if (list.isEmpty()) {
+            return 0;
+        }
+        return list.get(0).getMaNhaCC();
+    }
+
+
 
 }

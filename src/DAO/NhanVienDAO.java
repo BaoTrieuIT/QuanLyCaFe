@@ -13,11 +13,11 @@ import java.util.List;
 
 public class NhanVienDAO extends QuanLiCFDAO<NhanVien, String> {
 
-     String Insert_SQL = "insert into NhanVien (MaNV,HoTen,MatKhauNV,GioiTinh,DiaChi,SoDT,CCCD, NgaySinhNV Vaitro,Hinh) values (?,?,?,?,?,?,?,?,?,?)";
-     String Update_SQL = "update NhanVien set HoTen=?,MatKhauNV=?,GioiTinh=?,DiaChi=? , SoDT=?, CCCD = ?, NgaySinhNV = ? ,Vaitro=?,Hinh=? where MaNV = ? ";
-     String Delete_SQL = "delete from NhanVien where MaNV = ?";
-     String SelectAll_SQL = "select * from NhanVien";
-     String SelectByID_SQL = "select * from NhanVien where MaNV=?";
+    String Insert_SQL = "insert into NhanVien (MaNV,HoTen,MatKhauNV,GioiTinh,DiaChi,SoDT,CCCD, NgaySinhNV Vaitro,Hinh) values (?,?,?,?,?,?,?,?,?,?)";
+    String Update_SQL = "update NhanVien set HoTen=?,MatKhauNV=?,GioiTinh=?,DiaChi=? , SoDT=?, CCCD = ?, NgaySinhNV = ? ,Vaitro=?,Hinh=? where MaNV = ? ";
+    String Delete_SQL = "delete from NhanVien where MaNV = ?";
+    String SelectAll_SQL = "select * from NhanVien";
+    String SelectByID_SQL = "select * from NhanVien where MaNV=?";
 
     @Override
     public void insert(NhanVien entity) {
@@ -93,6 +93,14 @@ public class NhanVienDAO extends QuanLiCFDAO<NhanVien, String> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<NhanVien> selectByKeytWord(String keyword) {
+        String sql = "Select * from NhanVien where MaNV like N'%" + keyword + "%'  "
+                + "OR HoTen like N'%" + keyword + "%' "
+                + "Or SoDT like N'%" + keyword + "%' "
+                + "Or CCCD like N'%" + keyword + "%' ";
+        return this.selectBySQL(sql);
     }
 
 }

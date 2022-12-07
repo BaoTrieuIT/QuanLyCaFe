@@ -67,6 +67,5 @@ public class HoaDon {
     public void setGhiChu(String GhiChu) {
         this.GhiChu = GhiChu;
     }
-    
 
 }

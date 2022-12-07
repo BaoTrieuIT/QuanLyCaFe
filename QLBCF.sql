@@ -38,7 +38,7 @@ go
 
 create table HOADON
 (
-	MaHD int identity(1,1) primary key,
+	MaHD int identity primary key,
 	MaNV varchar(10),
 	MaKH int,
 	NgaylapHD datetime default getdate(),
@@ -138,3 +138,51 @@ select * from DoUong
 
 
 
+  DBCC CHECKIDENT ('HoaDOn', RESEED, 0);
+GO
+
+-- create proc sp_ThongKeDoanhThuTheoNam(@Year int)
+-- as
+-- begin
+-- 	select  a.MaHD, 
+-- 		SUM (b.ThanhTien)TongTien , 
+-- 		MIN(b.ThanhTien)MonThapNhat ,
+-- 		MAX(b.ThanhTien)MonCaoNhat 
+-- 		from HoaDon a
+-- 		join HoaDonChiTiet b on a.MaHD=b.MaHD
+-- 		where year(a.NgayLapHD) = @Year
+-- 		Group by a.MaHD
+-- end
+-- create proc sp_ThongKeDoanhThuTheoThang(@Month int)
+-- as
+-- begin
+-- 	select  a.MaHD, 
+-- 		SUM (b.ThanhTien)TongTien , 
+-- 		MIN(b.ThanhTien)MonThapNhat ,
+-- 		MAX(b.ThanhTien)MonCaoNhat 
+-- 		from HoaDon a
+-- 		join HoaDonChiTiet b on a.MaHD=b.MaHD
+-- 		where month(a.NgayLapHD) = @Month
+-- 		Group by a.MaHD
+-- end
+-- create proc sp_ThongKeDoanhThuTheoNgay(@Day int)
+-- as
+-- begin
+-- 	select  a.MaHD, 
+-- 		SUM (b.ThanhTien)TongTien , 
+-- 		MIN(b.ThanhTien)MonThapNhat ,
+-- 		MAX(b.ThanhTien)MonCaoNhat 
+-- 		from HoaDon a
+-- 		join HoaDonChiTiet b on a.MaHD=b.MaHD
+-- 		where Day(a.NgayLapHD) = @Day
+-- 		Group by a.MaHD
+-- end
+
+ 	select  a.MaHD, 
+ 		SUM (b.ThanhTien)TongTien , 
+ 		MIN(b.ThanhTien)MonThapNhat ,
+ 		MAX(b.ThanhTien)MonCaoNhat 
+ 		from HoaDon a
+ 		join HoaDonChiTiet b on a.MaHD=b.MaHD
+ 		where Day(a.NgayLapHD) = @Day
+ 		Group by a.MaHD

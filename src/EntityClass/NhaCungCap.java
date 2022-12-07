@@ -17,6 +17,18 @@ public class NhaCungCap {
     private String NguoiLienHe;
     private String GhiChu;
 
+    @Override
+    public String toString() {
+        return this.TenNhaCC;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    
+    
     public int getMaNhaCC() {
         return MaNhaCC;
     }

@@ -6,6 +6,9 @@ import EntityClass.NhanVien;
 import Utils.Auth;
 import Utils.MsgBox;
 import Utils.XImage;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
 /**
@@ -92,6 +95,21 @@ public class LoginForm_CafeHouse extends javax.swing.JDialog {
         txtUserName.setText("NV1");
         txtUserName.setToolTipText("");
         txtUserName.setBorder(null);
+        txtUserName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUserNameFocusGained(evt);
+            }
+        });
+        txtUserName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUserNameActionPerformed(evt);
+            }
+        });
+        txtUserName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUserNameKeyPressed(evt);
+            }
+        });
         kGradientPanel2.add(txtUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 360, -1));
 
         txtPassWord.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -103,6 +121,9 @@ public class LoginForm_CafeHouse extends javax.swing.JDialog {
         lblIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblIconMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblIconMouseEntered(evt);
             }
         });
         kGradientPanel2.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, -1, 60));
@@ -116,6 +137,14 @@ public class LoginForm_CafeHouse extends javax.swing.JDialog {
         btnExit.setBackground(new java.awt.Color(255, 255, 255));
         btnExit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnExit.setText("Thoát");
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnExitMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnExitMouseExited(evt);
+            }
+        });
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -132,6 +161,17 @@ public class LoginForm_CafeHouse extends javax.swing.JDialog {
         btnLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnLogin.setText("Đăng nhập");
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLoginMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLoginMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnLoginMousePressed(evt);
+            }
+        });
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
@@ -159,6 +199,59 @@ public class LoginForm_CafeHouse extends javax.swing.JDialog {
         // TODO add your handling code here:
         exit();
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void txtUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUserNameActionPerformed
+
+    private void txtUserNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserNameFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUserNameFocusGained
+
+    private void txtUserNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserNameKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == 10) {
+            login();
+        }
+    }//GEN-LAST:event_txtUserNameKeyPressed
+
+    private void btnLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseEntered
+        // TODO add your handling code here:
+        btnLogin.setBackground(Color.black);
+        btnLogin.setCursor(new Cursor(Cursor.HAND_CURSOR) {
+        });
+        btnLogin.setForeground(Color.white);
+    }//GEN-LAST:event_btnLoginMouseEntered
+
+    private void btnLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseExited
+        // TODO add your handling code here:
+        btnLogin.setBackground(new Color(255, 255, 255));
+        btnLogin.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnLoginMouseExited
+
+    private void btnExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseEntered
+        // TODO add your handling code here:
+        btnExit.setBackground(Color.black);
+        btnExit.setCursor(new Cursor(Cursor.HAND_CURSOR) {
+        });
+        btnExit.setForeground(Color.white);
+    }//GEN-LAST:event_btnExitMouseEntered
+
+    private void btnExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseExited
+        // TODO add your handling code here:
+        btnExit.setBackground(new Color(255, 255, 255));
+        btnExit.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnExitMouseExited
+
+    private void lblIconMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIconMouseEntered
+        // TODO add your handling code here:
+        lblIcon.setCursor(new Cursor(Cursor.HAND_CURSOR) {
+        });
+    }//GEN-LAST:event_lblIconMouseEntered
+
+    private void btnLoginMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLoginMousePressed
 
     /**
      * @param args the command line arguments
@@ -225,6 +318,7 @@ public class LoginForm_CafeHouse extends javax.swing.JDialog {
     private void init() {
         this.setLocationRelativeTo(null);
         this.setIconImage(XImage.getAppIcon());
+
     }
 
     void showPass() {
@@ -245,23 +339,23 @@ public class LoginForm_CafeHouse extends javax.swing.JDialog {
     }
 
     private void login() {
-       
-            String manv = txtUserName.getText();
-            String matKhau = new String(txtPassWord.getPassword());
-            NhanVien nhanvien = dao.selectById(manv);
-            if (nhanvien == null) {
-                MsgBox.alert(this, "Sai tên đăng nhập !");
-                txtUserName.requestFocus();
-            } else if (!matKhau.equals(nhanvien.getMatKhau())) {
-                MsgBox.alert(this, "Sai mật khẩu !");
-                txtUserName.requestFocus();
 
-            } else {
-                Auth.user = nhanvien; // user = manv
-                  MsgBox.alert(this, "Đăng nhập thành công !");
-                  ScreenMain_CafeHouse sm = new ScreenMain_CafeHouse();
-                  sm.setVisible(true);
-                this.dispose();
-            }
+        String manv = txtUserName.getText();
+        String matKhau = new String(txtPassWord.getPassword());
+        NhanVien nhanvien = dao.selectById(manv);
+        if (nhanvien == null) {
+            MsgBox.alert(this, "Sai tên đăng nhập !");
+            txtUserName.requestFocus();
+        } else if (!matKhau.equals(nhanvien.getMatKhau())) {
+            MsgBox.alert(this, "Sai mật khẩu !");
+            txtUserName.requestFocus();
+
+        } else {
+            Auth.user = nhanvien; // user = manv
+            MsgBox.alert(this, "Đăng nhập thành công !");
+            ScreenMain_CafeHouse sm = new ScreenMain_CafeHouse();
+            sm.setVisible(true);
+            this.dispose();
+        }
     }
 }

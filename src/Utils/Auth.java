@@ -5,6 +5,8 @@
  */
 package Utils;
 
+import EntityClass.HoaDon;
+import EntityClass.KhachHang;
 import EntityClass.NhanVien;
 
 /**
@@ -15,6 +17,8 @@ public class Auth {
     //Đối tượng này sẽ chứ thông tin người sử dụng đăng nhập vào
 
     public static NhanVien user = null;
+    public static KhachHang khachhang = null;
+    public static HoaDon hoadon = null;
 
     //Xóa thông tin của người sử dụng khi có yêu cầu đăng xuất 
     public static void clear() {
