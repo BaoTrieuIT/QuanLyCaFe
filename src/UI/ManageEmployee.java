@@ -5,12 +5,15 @@ import DAO.NhanVienDAO;
 import EntityClass.NhanVien;
 import Utils.Auth;
 import Utils.ChuyenDoi;
+import Utils.DateHelper;
 import Utils.MsgBox;
 import Utils.XImage;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
@@ -444,6 +447,11 @@ public class ManageEmployee extends javax.swing.JDialog {
                 MouseEntered(evt);
             }
         });
+        chkCapNhatMK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkCapNhatMKActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -574,11 +582,14 @@ public class ManageEmployee extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabs)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(368, 368, 368))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tabs)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -702,6 +713,10 @@ public class ManageEmployee extends javax.swing.JDialog {
         this.timKiem();
     }//GEN-LAST:event_txtTimkiemKeyReleased
 
+    private void chkCapNhatMKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkCapNhatMKActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkCapNhatMKActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -794,6 +809,8 @@ public class ManageEmployee extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     NhanVienDAO dao = new NhanVienDAO();
     int row = -1;
+    String notice = null;
+    private static NhanVien model;
 
     private void init() {
         this.setLocationRelativeTo(null);
@@ -949,36 +966,20 @@ public class ManageEmployee extends javax.swing.JDialog {
 
     private void insert() {
         NhanVien nv = getForm();
-        String mk2 = txtMatkhau2.getText();
-        if (!mk2.equals(nv.getMatKhau())) {
-            MsgBox.alert(this, "Xác nhận mật khẩu không đúng!!");
-        } else {
-            try {
-                if (txtMaNV.getText().equals("")) {
-                    MsgBox.alert(this, "Vui lòng nhập mã nhân viên");
-                    txtMaNV.requestFocus();
-                } else if (txtTenNV.getText().equals("")) {
-                    MsgBox.alert(this, "Vui lòng nhập tên nhân viên");
-                    txtTenNV.requestFocus();
-                } else if (txtMatkhau.getText().equals("")) {
-                    MsgBox.alert(this, "Vui lòng nhập địa chỉ nhân viên");
-                    txtDiaChi.requestFocus();
-                } else if (txtDiaChi.getText().equals("")) {
-                    MsgBox.alert(this, "Vui lòng nhập địa chỉ");
-                    txtDiaChi.requestFocus();
-                } else if (txtSDT.getText().equals("")) {
-                    MsgBox.alert(this, "Vui lòng nhập SDT nhân viên");
-                    txtSDT.requestFocus();
-                } else {
-                    dao.insert(nv);
-                    this.fillToTable();
-                    this.clearForm();
-                    MsgBox.alert(this, "Thêm mới thành công !!!");
-                }
-            } catch (Exception e) {
-                MsgBox.alert(this, "Thêm mới thất bại!! ");
-
+//        String mk2 = txtMatkhau2.getText();
+        try {
+            if (check()) {
+                dao.insert(nv);
+                this.fillToTable();
+                this.clearForm();
+                tabs.setSelectedIndex(0);
+                MsgBox.alert(this, "Thêm mới thành công !!!");
+            } else {
+                MsgBox.alert(this, notice);
             }
+
+        } catch (Exception e) {
+            MsgBox.alert(this, e.getMessage());
         }
     }
 
@@ -1005,41 +1006,34 @@ public class ManageEmployee extends javax.swing.JDialog {
     private void update() {
         NhanVien nv = getForm();
         if (chkCapNhatMK.isSelected()) {
-            String mk2 = txtMatkhau2.getText();
-            if (checkMatKhau()) {
-                MsgBox.alert(this, "Xác nhận mật khẩu không đúng!!");
-                txtMatkhau2.requestFocus();
-            } else {
-                try {
+            try {
+                if (checkUpdateSelectMK()) {
                     dao.update(nv);
+                    tabs.setSelectedIndex(0);
                     this.fillToTable();
                     MsgBox.alert(this, "Cập nhật thành công !!!");
-                } catch (Exception e) {
-                    MsgBox.alert(this, "Cập nhật thất bại!! ");
+                } else {
+                    MsgBox.alert(this, notice);
                 }
+            } catch (Exception e) {
+                MsgBox.alert(this, e.getMessage());
             }
+
         } else {
             try {
-                dao.update(nv);
-                this.fillToTable();
-                MsgBox.alert(this, "Cập nhật thành công !!!");
+                if (checkUpdate()) {
+                    dao.update(nv);
+                    tabs.setSelectedIndex(0);
+                    this.fillToTable();
+                    MsgBox.alert(this, "Cập nhật thành công !!!");
+                } else {
+                    MsgBox.alert(this, notice);
+                }
             } catch (Exception e) {
-                MsgBox.alert(this, "Cập nhật thất bại!! ");
+                MsgBox.alert(this, e.getMessage());
+
             }
         }
-    }
-
-    boolean checkMatKhau() {
-        boolean ketqua = true;
-        String MatKhau = new String(txtMatkhau.getPassword());
-        String NhapLaiMatKhau = new String(txtMatkhau2.getPassword());
-        if (MatKhau.length() < 3 || MatKhau.length() > 20) {
-            ketqua = false;
-        }
-        if (!NhapLaiMatKhau.equals(MatKhau)) {
-            ketqua = false;
-        }
-        return ketqua;
     }
 
     void clearForm() {
@@ -1052,5 +1046,170 @@ public class ManageEmployee extends javax.swing.JDialog {
 
     private void timKiem() {
         fillToTable();
+    }
+
+    boolean checkMatKhau() {
+        boolean ketqua = true;
+        String MatKhau = new String(txtMatkhau.getPassword());
+        String NhapLaiMatKhau = new String(txtMatkhau2.getPassword());
+        if (MatKhau.length() < 3 || MatKhau.length() > 20) {
+            notice = "Mật khẩu quá ngắn, vui lòng thử lại";
+            txtMatkhau.requestFocus();
+            ketqua = false;
+        }
+        if (!NhapLaiMatKhau.equals(MatKhau)) {
+            notice = "Mật khẩu không giống, vui lòng thử lại";
+            txtMatkhau2.requestFocus();
+            ketqua = false;
+        }
+        return ketqua;
+    }
+
+    boolean checkMaNV() {
+        boolean ketqua = true;
+        try {
+            String TenDangNhap = txtMaNV.getText();
+            if (TenDangNhap.isEmpty()) {
+                txtMaNV.requestFocus();
+                notice = "Vui lòng nhập Mã nhân viên";
+                ketqua = false;
+            } else if (!dao.kiemTenDangNhap(TenDangNhap)) {
+                txtMaNV.requestFocus();
+                notice = "Tên đăng nhập đã tồn tại !";
+                ketqua = false;
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Có lỗi: " + e.toString());
+        }
+        return ketqua;
+    }
+
+    boolean checkMaNVUpdate() {
+        boolean ketqua = true;
+        String TenDangNhap = txtMaNV.getText();
+        if (TenDangNhap.isEmpty()) {
+            txtMaNV.requestFocus();
+            notice = "Vui lòng nhập Mã nhân viên để cập nhật";
+            ketqua = false;
+        }
+        return ketqua;
+    }
+
+    boolean checkTenNV() {
+        String pattern = "^[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ\\s]+$";
+        if (!txtTenNV.getText().matches(pattern)) {
+            txtTenNV.requestFocus();
+            notice = "Kiểm tra lại tên nhân viên";
+            return false;
+        }
+        return true;
+    }
+
+    boolean checkSDT() {
+        boolean ketqua = true;
+        try {
+            String SDT = txtSDT.getText();
+            if (SDT.isEmpty() || SDT.length() < 10 || SDT.length() > 11) {
+                txtSDT.requestFocus();
+                notice = "Kiểm tra lại số điện thoại";
+                ketqua = false;
+            } else if (!dao.kiemSDT(SDT)) {
+                txtSDT.requestFocus();
+                notice = "Số điện thoại đã tồn tại";
+                ketqua = false;
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Có lỗi: " + e.toString());
+        }
+        return ketqua;
+    }
+
+    boolean checkSDTUpdate() {
+        boolean ketqua = true;
+        String SDT = txtSDT.getText();
+        if (SDT.isEmpty() || SDT.length() < 10 || SDT.length() > 11) {
+            txtSDT.requestFocus();
+            notice = "Kiểm tra lại số điện thoại";
+            ketqua = false;
+        }
+        return ketqua;
+    }
+
+    boolean checkNgaySinh() {
+        if (txtNgaySinh.getDate() != null) {
+            Date NgayHienTai = DateHelper.now();
+            Date NgaySinh = txtNgaySinh.getDate();
+            long kiemtra = DateHelper.getDateDiff(NgaySinh, NgayHienTai, TimeUnit.DAYS);
+            if (kiemtra / 365 < 18) {
+                notice = "Nhân viên phải trên 18 tuổi !";
+                txtNgaySinh.requestFocus();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    boolean checkCCCD() {
+        boolean ketqua = true;
+        try {
+            String CCCD = txtCCCD.getText();
+            if (CCCD.isEmpty() || CCCD.length() < 12 || CCCD.length() > 12) {
+                notice = "Kiểm tra lại CCCD. Vui lòng nhập đủ 12 số";
+                txtCCCD.requestFocus();
+                ketqua = false;
+            } else if (!dao.kiemCCCD(CCCD)) {
+                notice = "CCCD đã tồn tại";
+                txtCCCD.requestFocus();
+                ketqua = false;
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Có lỗi: " + e.toString());
+        }
+        return ketqua;
+    }
+
+    boolean checkCCCDUpdate() {
+        boolean ketqua = true;
+        String CCCD = txtCCCD.getText();
+        if (CCCD.isEmpty() || CCCD.length() < 12 || CCCD.length() > 12) {
+            notice = "Kiểm tra lại CCCD. Vui lòng nhập đủ 12 số";
+            txtCCCD.requestFocus();
+            ketqua = false;
+        }
+        return ketqua;
+    }
+
+    boolean checkDiaChi() {
+        if (txtDiaChi.getText().isEmpty()) {
+            txtDiaChi.requestFocus();
+            notice = "Vui lòng nhập địa chỉ ";
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    boolean check() {
+        if (!checkMaNV() || !checkTenNV() || !checkSDT() || !checkNgaySinh() || !checkCCCD() || !checkDiaChi() || !checkMatKhau()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    boolean checkUpdate() {
+        if (!checkMaNVUpdate() || !checkTenNV() || !checkSDTUpdate() || !checkNgaySinh() || !checkCCCDUpdate() || !checkDiaChi()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean checkUpdateSelectMK() {
+        if (!checkMaNVUpdate() || !checkTenNV() || !checkSDTUpdate() || !checkNgaySinh() || !checkCCCDUpdate() || !checkDiaChi() || !checkMatKhau()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

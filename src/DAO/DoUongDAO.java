@@ -139,5 +139,15 @@ public class DoUongDAO extends QuanLiCFDAO<DoUong, String> {
                 + "or du.TenMon like N'%" + keyword + "%' ";
         return this.selectBySQLInnerJoin(sql);
     }
+    public int capNhatSoLuong(String MaMon, int SoLuong) {
+        String sql = "UPDATE DoUong SET SoLuong = ? WHERE MaMon = ?";
+        return JdbcHelper.update(sql, MaMon, SoLuong);
+    }
+    public boolean kiemMaMon(String TenMon) {
+        String sql = "SELECT * FROM DoUong WHERE MaMon = ?";
+        List<DoUong> list = selectBySQL(sql, TenMon);
+        return list.size() < 1;
+    }
+    
 
 }

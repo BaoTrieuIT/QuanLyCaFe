@@ -809,7 +809,7 @@ public class ManageSale extends javax.swing.JDialog {
     DoUongDAO dao = new DoUongDAO();
     HoaDonChiTietDAO hdctdao = new HoaDonChiTietDAO();
     HoaDonDAO hddao = new HoaDonDAO();
-
+    String notice = null;
     private void init() {
         fillToTable();
         hienKhachHang();
@@ -913,6 +913,7 @@ public class ManageSale extends javax.swing.JDialog {
         }
 
     }
+
     boolean kiemTraTruocKhiThemSP() {
         String maMon = txtMaMon.getText();
         int soLuong = Integer.parseInt(txtSoLuong.getText());
@@ -965,8 +966,6 @@ public class ManageSale extends javax.swing.JDialog {
 
         return tongTien;
     }
-
-
 
     HoaDon getFormHD() {
         HoaDon hd = new HoaDon();
@@ -1037,9 +1036,9 @@ public class ManageSale extends javax.swing.JDialog {
     private void thanhToan() {
         if (kiemTraTruocKhiThanhToan()) {
             HoaDon hd = getFormHD();
-            if(chkKhachVangLai.isSelected()){
+            if (chkKhachVangLai.isSelected()) {
                 hddao.insertKhachVangLai(hd);
-            }else{
+            } else {
                 hd.setMaKH(Auth.hoadon.getMaKH());
                 hddao.insert(hd);
             }
@@ -1053,7 +1052,7 @@ public class ManageSale extends javax.swing.JDialog {
             this.TaoMoiHD();
             this.clearForm();
         } else {
-
+            MsgBox.alert(this, notice);
         }
 
     }
@@ -1065,7 +1064,7 @@ public class ManageSale extends javax.swing.JDialog {
     boolean kiemTraTruocKhiThanhToan() {
         String tongtien = txtTongTien.getText();
         if (tongtien.equals("0")) {
-            MsgBox.alert(this, "Vui lòng chọn món trước khi thanh toán !!");
+            notice = "Vui lòng chọn món trước khi thanh toán !!";
             return false;
         }
 
@@ -1073,7 +1072,7 @@ public class ManageSale extends javax.swing.JDialog {
         thanhtien = ChuyenDoi.ChuyenTien(txtTongTien.getText());
         tienkhachtra = Double.parseDouble(txtTienKhachTra.getText());
         if (tienkhachtra < thanhtien) {
-            MsgBox.alert(this, "Vui lòng nhập tiền khách trả lớn hơn Tổng tiền !!");
+            notice = "Vui lòng nhập tiền khách trả lớn hơn Tổng tiền !!";
             txtTienKhachTra.requestFocus();
             return false;
         }

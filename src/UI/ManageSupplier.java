@@ -21,7 +21,7 @@ public class ManageSupplier extends javax.swing.JFrame {
      * Creates new form ManageSupplier
      */
     public ManageSupplier() {
-
+        
         initComponents();
         init();
     }
@@ -61,7 +61,7 @@ public class ManageSupplier extends javax.swing.JFrame {
         btnLast = new javax.swing.JButton();
         txtTenNCC = new javax.swing.JTextField();
         txtDiaChi = new javax.swing.JTextField();
-        txtTenNuoiLH = new javax.swing.JTextField();
+        txtTenNguoiLH = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -284,9 +284,9 @@ public class ManageSupplier extends javax.swing.JFrame {
         txtDiaChi.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtDiaChi.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
-        txtTenNuoiLH.setBackground(new java.awt.Color(255, 204, 102));
-        txtTenNuoiLH.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtTenNuoiLH.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txtTenNguoiLH.setBackground(new java.awt.Color(255, 204, 102));
+        txtTenNguoiLH.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtTenNguoiLH.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -305,7 +305,7 @@ public class ManageSupplier extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtTenNCC, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTenNuoiLH, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTenNguoiLH, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDiaChi, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtSDT)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -329,7 +329,7 @@ public class ManageSupplier extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22)
-                        .addComponent(txtTenNuoiLH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTenNguoiLH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -374,13 +374,13 @@ public class ManageSupplier extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tabs))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(235, 235, 235)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBack)))
+                        .addComponent(btnBack))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tabs)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -449,7 +449,7 @@ public class ManageSupplier extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         this.dispose();
-
+        
         new ManageWareHouse(this, true).setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -482,7 +482,7 @@ public class ManageSupplier extends javax.swing.JFrame {
 
     private void btnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseExited
         // TODO add your handling code here:
-        btnBack.setBackground(new Color(255,255,255));
+        btnBack.setBackground(new Color(255, 255, 255));
         btnBack.setForeground(Color.black);
     }//GEN-LAST:event_btnBackMouseExited
 
@@ -549,22 +549,23 @@ public class ManageSupplier extends javax.swing.JFrame {
     private javax.swing.JTextArea txtGhiChu;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTenNCC;
-    private javax.swing.JTextField txtTenNuoiLH;
+    private javax.swing.JTextField txtTenNguoiLH;
     // End of variables declaration//GEN-END:variables
     NhaCungCapDAO dao = new NhaCungCapDAO();
     int row = -1;
-
+    String notice = null;
+    
     private void init() {
         this.setLocationRelativeTo(null);
 //        this.setIconImage(XImage.getAppIcon());
         fillToTable();
-
+        
     }
-
+    
     void fillToTable() {
         DefaultTableModel model = (DefaultTableModel) tblNhaCungCap.getModel();
         model.setRowCount(0);
-
+        
         try {
             List<NhaCungCap> list = dao.selectAll();
             for (NhaCungCap ncc : list) {
@@ -573,10 +574,10 @@ public class ManageSupplier extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             e.printStackTrace();
-
+            
         }
     }
-
+    
     private void edit() {
         int mancc = (Integer) tblNhaCungCap.getValueAt(this.row, 0);
         NhaCungCap ncc = dao.selectById(mancc);
@@ -584,15 +585,15 @@ public class ManageSupplier extends javax.swing.JFrame {
         tabs.setSelectedIndex(1);
         this.updateStatus();
     }
-
+    
     private void setForm(NhaCungCap ncc) {
         txtTenNCC.setText(ncc.getTenNhaCC());
         txtSDT.setText(ncc.getSDT());
-        txtTenNuoiLH.setText(ncc.getNguoiLienHe());
+        txtTenNguoiLH.setText(ncc.getNguoiLienHe());
         txtGhiChu.setText(ncc.getGhiChu());
         txtDiaChi.setText(ncc.getDiaChi());
     }
-
+    
     private void updateStatus() {
         boolean edit = (this.row >= 0);
         boolean first = (this.row == 0);
@@ -608,80 +609,70 @@ public class ManageSupplier extends javax.swing.JFrame {
         btnNext.setEnabled(edit && !last);
         btnLast.setEnabled(edit && !last);
     }
-
+    
     void first() {
         this.row = 0;
         this.edit();
     }
-
+    
     void last() {
         this.row = tblNhaCungCap.getRowCount() - 1;
         this.edit();
     }
-
+    
     void prev() {
         if (this.row > 0) {
             this.row--;
             this.edit();
         }
     }
-
+    
     void next() {
         if (this.row < tblNhaCungCap.getRowCount() - 1) {
             this.row++;
             this.edit();
         }
     }
-
+    
     NhaCungCap getForm() {
         int[] rows = tblNhaCungCap.getSelectedRows();
         NhaCungCap ncc = new NhaCungCap();
         for (int row : rows) {
             int mancc = (int) tblNhaCungCap.getValueAt(row, 0);
             ncc.setMaNhaCC(mancc);
-
+            
         }
         ncc.setTenNhaCC(txtTenNCC.getText());
         ncc.setSDT(txtSDT.getText());
         ncc.setDiaChi(txtDiaChi.getText());
-        ncc.setNguoiLienHe(txtTenNuoiLH.getText());
+        ncc.setNguoiLienHe(txtTenNguoiLH.getText());
         txtGhiChu.setText(txtGhiChu.getText());
         return ncc;
     }
-
+    
     private void insert() {
-        NhaCungCap ncc = getForm();
         try {
-            if (txtTenNCC.getText().equals("")) {
-                MsgBox.alert(this, "Vui lòng nhập ten nha cung cap");
-                txtTenNCC.requestFocus();
-            } else if (txtTenNuoiLH.getText().equals("")) {
-                MsgBox.alert(this, "Vui lòng nhập tên nguoi lien he");
-                txtTenNuoiLH.requestFocus();
-            } else if (txtSDT.getText().equals("")) {
-                MsgBox.alert(this, "Vui lòng nhập so dien thoai");
-                txtSDT.requestFocus();
-            } else if (txtDiaChi.getText().equals("")) {
-                MsgBox.alert(this, "Vui lòng nhập địa chỉ khách hàng");
-                txtDiaChi.requestFocus();
-            } else {
+            if (check()) {
+                NhaCungCap ncc = getForm();
                 dao.insert(ncc);
                 this.fillToTable();
                 this.clearForm();
+                tabs.setSelectedIndex(0);
                 MsgBox.alert(this, "Thêm mới thành công !!!");
+            } else {
+                MsgBox.alert(this, notice);
             }
         } catch (Exception e) {
-            MsgBox.alert(this, "Thêm mới thất bại!! ");
-            e.printStackTrace();
+            MsgBox.alert(this, e.getMessage());
         }
     }
-
+    
     private void delete() {
         int[] rows = tblNhaCungCap.getSelectedRows();
         if (!Auth.isManager()) {
-            MsgBox.alert(this, "Bạn không có quyền xóa khach1 hang ?");
+            MsgBox.alert(this, "Bạn không có quyền xóa người cung cấp ?");
         } else {
-            if (MsgBox.confirm(this, "Bạn thực sự muốn xóa nguoi cung cap này ??")) {
+            if (MsgBox.confirm(this, "Bạn thực sự muốn xóa người cung cap này ??")) {
                 for (int row : rows) {
                     int makh = (int) tblNhaCungCap.getValueAt(row, 0);
                     try {
@@ -698,26 +689,135 @@ public class ManageSupplier extends javax.swing.JFrame {
             }
         }
     }
-
+    
     private void update() {
-        NhaCungCap ncc = getForm();
-        try {
-            dao.update(ncc);
-            this.fillToTable();
-            MsgBox.alert(this, "Cập nhật thành công !!!");
+        if (checkMaNhaCC() > 0) {
+            try {
+                if (checkUpdate()) {
+                    NhaCungCap ncc = getForm();
+                    dao.update(ncc);
+                    this.fillToTable();
+                    MsgBox.alert(this, "Cập nhật thành công !!!");
+                    tabs.setSelectedIndex(0);
+                } else {
+                    MsgBox.alert(this, notice);
+                }
+            } catch (Exception e) {
+                MsgBox.alert(this, e.getMessage());
+            }
+        } else {
+            MsgBox.alert(this, "Vui lòng chọn nhà cung cấp trước");
             tabs.setSelectedIndex(0);
-
-        } catch (Exception e) {
-            MsgBox.alert(this, "Cập nhật thất bại!! ");
-            System.out.println(e.getMessage());
         }
+        
     }
-
+    
     private void clearForm() {
         NhaCungCap ncc = new NhaCungCap();
         this.setForm(ncc);
         this.row = -1;
         this.updateStatus();
     }
-
+    
+    boolean checkTenNCC() {
+        boolean ketqua = true;
+        try {
+            String NCC = txtTenNCC.getText();
+            if (txtTenNCC.getText().isEmpty()) {
+                notice = "Vui lòng nhập tên nhà cung cấp ";
+                txtTenNCC.requestFocus();
+                ketqua = false;
+            } else if (!dao.kiemNCC(NCC)) {
+                ketqua = false;
+                notice = "Nhà cung cấp đã tồn tại";
+                txtTenNCC.requestFocus();
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Có lỗi: " + e.toString());
+        }
+        return ketqua;
+    }
+    
+    boolean checkTenNCCUpdate() {
+        boolean ketqua = true;
+        if (txtTenNCC.getText().isEmpty()) {
+            notice = "Vui lòng nhập tên nhà cung cấp ";
+            txtTenNCC.requestFocus();
+            ketqua = false;
+        }
+        return ketqua;
+    }
+    
+    boolean checkSDT() {
+        boolean ketqua = true;
+        try {
+            String SDT = txtSDT.getText();
+            if (SDT.isEmpty() || SDT.length() < 10 || SDT.length() > 11) {
+                ketqua = false;
+                notice = "Vui lòng nhập số điện thoại";
+                txtSDT.requestFocus();
+            } else if (!dao.kiemSDT(SDT)) {
+                ketqua = false;
+                notice = "Số điện thoại đã tồn tại";
+                txtSDT.requestFocus();
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Có lỗi: " + e.toString());
+        }
+        return ketqua;
+    }
+    
+    boolean checkSDTUpdate() {
+        boolean ketqua = true;
+        String SDT = txtSDT.getText();
+        if (SDT.isEmpty() || SDT.length() < 10 || SDT.length() > 11) {
+            ketqua = false;
+            notice = "Vui lòng nhập số điện thoại";
+            txtSDT.requestFocus();
+        }
+        return ketqua;
+    }
+    
+    boolean checkDiaChi() {
+        if (txtDiaChi.getText().isEmpty()) {
+            notice = "Vui lòng nhập địa chỉ";
+            txtDiaChi.requestFocus();
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    boolean checkTenNLH() {
+        String pattern = "^[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ\\s]+$";
+        if (!txtTenNguoiLH.getText().matches(pattern)) {
+            notice = "Vui lòng nhập tên người liên hệ ";
+            txtTenNguoiLH.requestFocus();
+            return false;
+        }
+        return true;
+    }
+    
+    boolean check() {
+        if (!checkTenNCC() || !checkSDT() || !checkDiaChi() || !checkTenNLH()) {
+            return false;
+        }
+        return true;
+    }
+    
+    boolean checkUpdate() {
+        if (!checkTenNCCUpdate() || !checkSDTUpdate() || !checkDiaChi() || !checkTenNLH()) {
+            return false;
+        }
+        return true;
+    }
+    
+    int checkMaNhaCC() {
+        int[] rows = tblNhaCungCap.getSelectedRows();
+        for (int row : rows) {
+            int mancc = (int) tblNhaCungCap.getValueAt(row, 0);
+            return mancc;
+        }
+        return 0;
+    }
 }

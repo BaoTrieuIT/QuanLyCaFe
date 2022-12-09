@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/Java3/QuanLyCaFe/src/DAO/KhachHangDAO.java</file>
-            <file>file:/F:/Java3/QuanLyCaFe/src/UI/ManageCustomer.java</file>
-            <file>file:/F:/Java3/QuanLyCaFe/src/UI/ManageSale.java</file>
+            <file>file:/F:/Java3/QuanLyQuanCaFe_Nhóm5_IT17311/QuanLyCaFe/src/DAO/DoUongDAO.java</file>
+            <file>file:/F:/Java3/QuanLyQuanCaFe_Nhóm5_IT17311/QuanLyCaFe/src/DAO/NhanVienDAO.java</file>
+            <file>file:/F:/Java3/QuanLyQuanCaFe_Nhóm5_IT17311/QuanLyCaFe/src/UI/ManageWareHouse.java</file>
+            <file>file:/F:/Java3/QuanLyQuanCaFe_Nhóm5_IT17311/QuanLyCaFe/src/UI/ManageEmployee.java</file>
         </group>
     </open-files>
 </project-private>

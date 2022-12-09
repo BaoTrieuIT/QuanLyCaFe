@@ -178,11 +178,3 @@ GO
 -- 		Group by a.MaHD
 -- end
 
- 	select  a.MaHD, 
- 		SUM (b.ThanhTien)TongTien , 
- 		MIN(b.ThanhTien)MonThapNhat ,
- 		MAX(b.ThanhTien)MonCaoNhat 
- 		from HoaDon a
- 		join HoaDonChiTiet b on a.MaHD=b.MaHD
- 		where Day(a.NgayLapHD) = @Day
- 		Group by a.MaHD

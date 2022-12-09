@@ -1,6 +1,7 @@
 package UI;
 
 //import Utils.XImage;
+import Utils.MsgBox;
 import Utils.XImage;
 
 /**
@@ -166,28 +167,24 @@ public class Welcome_CafeHouse extends javax.swing.JFrame {
                 if (i == 30) {
                     sp.txtLoading.setText("Kết nối database...");
                     sp.txtLoading_Tittle.setText("Let us make your day!");
-
                 }
 
                 if (i == 50) {
                     sp.txtLoading.setText("Kết nối thành công...");
                     sp.txtLoading_Tittle.setText("We perk you up!");
-
                 }
                 if (i == 80) {
                     sp.txtLoading.setText("Khởi chạy ứng dụng...");
                     sp.txtLoading_Tittle.setText("Taste the freshness!");
                 }
-
                 if (i == 100) {
                     sp.dispose();
                     new LoginForm_CafeHouse(new javax.swing.JFrame(), true).setVisible(true);
                 }
-
             }
 
         } catch (Exception e) {
-
+            MsgBox.alert(sp, e.getMessage());
         }
     }
 }

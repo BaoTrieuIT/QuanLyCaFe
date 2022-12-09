@@ -784,6 +784,7 @@ public class ManageCustomer extends javax.swing.JDialog {
                 this.fillToTable();
                 this.clearForm();
                 MsgBox.alert(this, "Thêm mới thành công !!!");
+                tabs.setSelectedIndex(0);
             } else {
                 MsgBox.alert(this, notice);
             }
@@ -837,6 +838,17 @@ public class ManageCustomer extends javax.swing.JDialog {
         return true;
     }
 
+    boolean checkEmailUpdate() {
+        String email = txtEmail.getText().trim();
+        String pattern = "([A-Za-z0-9-_.]+@[A-Za-z0-9-_]+(?:\\.[A-Za-z0-9]+)+)";
+        if (txtEmail.getText().length() <= 0 | (!email.matches(pattern))) {
+            notice = "Kiểm tra lại Emaill";
+            txtEmail.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
     boolean checkSDT() {
         boolean ketqua = true;
         try {
@@ -854,6 +866,17 @@ public class ManageCustomer extends javax.swing.JDialog {
         return ketqua;
     }
 
+    boolean checkSDTUpdate() {
+        boolean ketqua = true;
+        String SDT = txtSDT.getText();
+        if (SDT.isEmpty() || SDT.length() < 10 || SDT.length() > 11) {
+            notice = "Kiểm tra lại số điện thoại ";
+            ketqua = false;
+        }
+
+        return ketqua;
+    }
+
     boolean checkDiaChi() {
         if (txtDiaChi.getText().isEmpty()) {
             notice = "Kiểm tra lại Đia chỉ khách hàng";
@@ -866,6 +889,13 @@ public class ManageCustomer extends javax.swing.JDialog {
 
     boolean checkAll() {
         if (!checkTenKH() || !checkNgaySinh() || !checkSDT() || !checkEmail() || !checkDiaChi()) {
+            return false;
+        }
+        return true;
+    }
+
+    boolean checkAllUpdate() {
+        if (!checkTenKH() || !checkNgaySinh() || !checkSDTUpdate() || !checkEmailUpdate() || !checkDiaChi()) {
             return false;
         }
         return true;
@@ -895,20 +925,26 @@ public class ManageCustomer extends javax.swing.JDialog {
     }
 
     private void update() {
-
-        try {
-            if (checkAll()) {
-                KhachHang kh = getForm();
-                dao.update(kh);
-                this.fillToTable();
-                MsgBox.alert(this, "Cập nhật thành công !!!");
-                tabs.setSelectedIndex(0);
-            } else {
-                MsgBox.alert(this, notice);
+        if (checkMaKH() > 0) {
+            try {
+                if (checkAllUpdate()) {
+                    KhachHang kh = getForm();
+                    dao.update(kh);
+                    this.fillToTable();
+                    MsgBox.alert(this, "Cập nhật thành công !!!");
+                    tabs.setSelectedIndex(0);
+                } else {
+                    MsgBox.alert(this, notice);
+                }
+            } catch (Exception e) {
+                MsgBox.alert(this, e.getMessage());
             }
-        } catch (Exception e) {
-            MsgBox.alert(this, e.getMessage());
+        } else {
+            MsgBox.alert(this, "Vui lòng chọn khách hàng trước khi cập nhật");
+            tabs.setSelectedIndex(0);
+
         }
+
     }
 
     void clearForm() {
@@ -923,4 +959,12 @@ public class ManageCustomer extends javax.swing.JDialog {
         fillToTable();
     }
 
+    int checkMaKH() {
+        int[] rows = tblKhachHang.getSelectedRows();
+        for (int row : rows) {
+            int mancc = (int) tblKhachHang.getValueAt(row, 0);
+            return mancc;
+        }
+        return 0;
+    }
 }

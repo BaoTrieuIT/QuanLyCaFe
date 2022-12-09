@@ -12,12 +12,14 @@ import EntityClass.NhaCungCap;
 import EntityClass.NhanVien;
 import Utils.Auth;
 import Utils.ChuyenDoi;
+import Utils.DateHelper;
 import Utils.MsgBox;
 import Utils.XImage;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -705,6 +707,7 @@ public class ManageWareHouse extends javax.swing.JDialog {
     private javax.swing.JTextField txtTenMon;
     private javax.swing.JTextField txtTimkiem;
     // End of variables declaration//GEN-END:variables
+    String notice = null;
 
     private void init() {
         setLocationRelativeTo(null);
@@ -881,15 +884,19 @@ public class ManageWareHouse extends javax.swing.JDialog {
     }
 
     private void insert() {
-        DoUong du = getForm();
+
         try {
-            dao.insert(du);
-            this.fillToTable();
-            this.clearForm();
-            MsgBox.alert(this, "Thêm mới thành công !!!");
+            if (Check()) {
+                DoUong du = getForm();
+                dao.insert(du);
+                this.fillToTable();
+                this.clearForm();
+                MsgBox.alert(this, "Thêm mới thành công !!!");
+            } else {
+                MsgBox.alert(this, notice);
+            }
         } catch (Exception e) {
-            MsgBox.alert(this, "Thêm mới thất bại!! ");
-            System.out.println(e.getMessage());
+            MsgBox.alert(this, e.getMessage());
         }
     }
 
@@ -918,12 +925,17 @@ public class ManageWareHouse extends javax.swing.JDialog {
     }
 
     private void update() {
-        DoUong du = getForm();
+
         try {
-            dao.update(du);
-            this.fillToTable();
-            MsgBox.alert(this, "Cập nhật thành công !!!");
-            tabs.setSelectedIndex(0);
+            if (CheckUpdate()) {
+                DoUong du = getForm();
+                dao.update(du);
+                this.fillToTable();
+                MsgBox.alert(this, "Cập nhật thành công !!!");
+                tabs.setSelectedIndex(0);
+            }else{
+                MsgBox.alert(this, notice);
+            }
 
         } catch (Exception e) {
             MsgBox.alert(this, "Cập nhật thất bại!! ");
@@ -945,5 +957,121 @@ public class ManageWareHouse extends javax.swing.JDialog {
 
     private void timKiem() {
         fillToTable();
+    }
+
+    boolean checkMaMon() {
+        boolean ketqua = true;
+        try {
+            String TenMon = txtMaMon.getText();
+            if (TenMon.isEmpty()) {
+                txtMaMon.requestFocus();
+                notice = "Vui lòng nhập Mã Món";
+                ketqua = false;
+            } else if (!dao.kiemMaMon(TenMon)) {
+                txtMaMon.requestFocus();
+                notice = "Mã món đã tồn tại !";
+                ketqua = false;
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Có lỗi: " + e.toString());
+        }
+        return ketqua;
+    }
+
+    boolean checkMaMonUpdate() {
+        boolean ketqua = true;
+            String TenMon = txtMaMon.getText();
+            if (TenMon.isEmpty()) {
+                txtMaMon.requestFocus();
+                notice = "Vui lòng nhập Mã Món";
+                ketqua = false;
+            }
+        return ketqua;
+    }
+
+    boolean checkTenMon() {
+        String TenSanPham = txtTenMon.getText();
+        if (TenSanPham.length() < 5) {
+            txtTenMon.requestFocus();
+            notice = "Vui lòng nhập Tên món";
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    boolean checkSize() {
+        String SizeMon = txtSize.getText();
+        if (SizeMon.isEmpty()) {
+            txtSize.requestFocus();
+            notice = "Vui lòng nhập Size của món";
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    boolean CheckGiaNhap() {
+        if (txtGiaNhap.getText().length() < 3) {
+            txtGiaNhap.requestFocus();
+            notice = "Vui lòng nhập Giá nhập lớn hơn";
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    boolean CheckGiaBan() {
+        if (txtGiaBan.getText().length() < 3) {
+            txtGiaBan.requestFocus();
+            notice = "Vui lòng nhập Giá nhập lớn hơn";
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    boolean CheckSoLuong() {
+        int SoLuong = Integer.parseInt(spnSoLuong.getValue().toString());
+        if (SoLuong < 1) {
+            spnSoLuong.requestFocus();
+            notice = "Vui lòng nhập Số lượng";
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+//    boolean CheckNgayNhap() {
+//        return true;
+//    }
+    boolean CheckNgayHetHan() {
+        if (txtNgayHetHan.getDate() != null) {
+            Date NgayBan = txtNgayNhap.getDate();
+            Date NgayHetHan = txtNgayHetHan.getDate();
+            long kiemtra = DateHelper.getDateDiff(NgayBan, NgayHetHan, TimeUnit.DAYS);
+            if (kiemtra / 365 < 1) {
+                notice = "Ngày hết hạn phải lớn hơn ngày nhập nhập hàng";
+                txtNgayHetHan.requestFocus();
+                return false;
+            }
+        }
+        return true;
+    }
+//|| !CheckNgayNhap()
+
+    boolean Check() {
+        if (!checkMaMon() || !checkTenMon() || !checkSize() || !CheckGiaNhap() || !CheckGiaBan() || !CheckSoLuong() || !CheckNgayHetHan()) {
+            return false;
+        }
+        return true;
+    }
+
+    boolean CheckUpdate() {
+        if (!checkMaMonUpdate() || !checkTenMon() || !checkSize() || !CheckGiaNhap() || !CheckGiaBan() || !CheckSoLuong() || !CheckNgayHetHan()) {
+            return false;
+        }
+        return true;
     }
 }

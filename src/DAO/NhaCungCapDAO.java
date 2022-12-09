@@ -22,7 +22,6 @@ public class NhaCungCapDAO extends QuanLiCFDAO<NhaCungCap, Integer> {
     @Override
     public void insert(NhaCungCap e) {
         JdbcHelper.update(Insert_SQL,
-                e.getMaNhaCC(),
                 e.getTenNhaCC(),
                 e.getSDT(),
                 e.getDiaChi(),
@@ -92,6 +91,7 @@ public class NhaCungCapDAO extends QuanLiCFDAO<NhaCungCap, Integer> {
         }
         return list.get(0).getTenNhaCC();
     }
+
     public int selectMaNhaCC(String key) {
         String sql = "select * from NHACUNGCAP where TenNhaCC = ?";
         List<NhaCungCap> list = selectBySQL(sql, key);
@@ -101,6 +101,15 @@ public class NhaCungCapDAO extends QuanLiCFDAO<NhaCungCap, Integer> {
         return list.get(0).getMaNhaCC();
     }
 
-
+    public boolean kiemSDT(String SDT) {
+        String sql = "SELECT * FROM NHACUNGCAP WHERE SDT = ?";
+        List<NhaCungCap> list = selectBySQL(sql, SDT);
+        return list.size() < 1;
+    }
+     public boolean kiemNCC(String NCC) {
+        String sql = "SELECT * FROM NHACUNGCAP WHERE TenNhaCC = ?";
+        List<NhaCungCap> list = selectBySQL(sql, NCC);
+        return list.size() < 1;
+    }
 
 }

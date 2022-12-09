@@ -13,7 +13,7 @@ import java.util.List;
 
 public class NhanVienDAO extends QuanLiCFDAO<NhanVien, String> {
 
-    String Insert_SQL = "insert into NhanVien (MaNV,HoTen,MatKhauNV,GioiTinh,DiaChi,SoDT,CCCD, NgaySinhNV Vaitro,Hinh) values (?,?,?,?,?,?,?,?,?,?)";
+    String Insert_SQL = "insert into NhanVien (MaNV,HoTen,MatKhauNV,GioiTinh,DiaChi,SoDT,CCCD, NgaySinhNV, Vaitro,Hinh) values (?,?,?,?,?,?,?,?,?,?)";
     String Update_SQL = "update NhanVien set HoTen=?,MatKhauNV=?,GioiTinh=?,DiaChi=? , SoDT=?, CCCD = ?, NgaySinhNV = ? ,Vaitro=?,Hinh=? where MaNV = ? ";
     String Delete_SQL = "delete from NhanVien where MaNV = ?";
     String SelectAll_SQL = "select * from NhanVien";
@@ -101,6 +101,24 @@ public class NhanVienDAO extends QuanLiCFDAO<NhanVien, String> {
                 + "Or SoDT like N'%" + keyword + "%' "
                 + "Or CCCD like N'%" + keyword + "%' ";
         return this.selectBySQL(sql);
+    }
+
+    public boolean kiemTenDangNhap(String TenDangNhap) {
+        String sql = "SELECT * FROM NhanVien WHERE MaNV = ?";
+        List<NhanVien> list = selectBySQL(sql, TenDangNhap);
+        return list.size() < 1;
+    }
+
+    public boolean kiemSDT(String SDT) {
+        String sql = "SELECT * FROM NhanVien WHERE SoDT = ?";
+        List<NhanVien> list = selectBySQL(sql, SDT);
+        return list.size() < 1;
+    }
+
+    public boolean kiemCCCD(String CCCD) {
+        String sql = "SELECT * FROM NhanVien WHERE CCCD = ?";
+        List<NhanVien> list = selectBySQL(sql, CCCD);
+        return list.size() < 1;
     }
 
 }

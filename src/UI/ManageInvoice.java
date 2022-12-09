@@ -273,10 +273,6 @@ public class ManageInvoice extends javax.swing.JDialog {
             MsgBox.alert(this, "Bạn không có quyền xóa hoá đơn !!!");
         } else {
             if (MsgBox.confirm(this, "Bạn muốn xóa tất cả hoá đơn không ??")) {
-//                for (int row : tblHoaDon.getSelectedRows()) {
-//                    int mahd =  Integer.parseInt(tblHoaDon.getValueAt(row, 1).toString());
-//                    dao.delete(mahd);
-//                }
                 for (int i = 0; i < tblHoaDon.getRowCount(); i++) {
                     int mahd = Integer.parseInt(tblHoaDon.getValueAt(i, 1).toString());
                     dao.delete(mahd);
