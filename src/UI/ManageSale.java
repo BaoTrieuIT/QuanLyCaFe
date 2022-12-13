@@ -404,7 +404,6 @@ public class ManageSale extends javax.swing.JDialog {
         });
 
         txtTenKhachHang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtTenKhachHang.setText("Tìm kiếm khách hàng");
         txtTenKhachHang.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtTenKhachHangFocusGained(evt);
@@ -618,6 +617,7 @@ public class ManageSale extends javax.swing.JDialog {
         tienkhachtra = Double.parseDouble(txtTienKhachTra.getText());
         tientrakhach = tienkhachtra - thanhtien;
         txtTienTraKhach.setText(ChuyenDoi.DinhDangTien(tientrakhach));
+
     }//GEN-LAST:event_txtTienKhachTraKeyReleased
 
     private void txtTenKhachHangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenKhachHangKeyPressed
@@ -632,16 +632,12 @@ public class ManageSale extends javax.swing.JDialog {
     }//GEN-LAST:event_txtTenKhachHangActionPerformed
 
     private void txtTenKhachHangFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTenKhachHangFocusGained
-        if (txtTenKhachHang.getText().equals("Tìm kiếm khách hàng")) {
-            txtTenKhachHang.setText("");
-        }
+
     }//GEN-LAST:event_txtTenKhachHangFocusGained
 
     private void txtTenKhachHangFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTenKhachHangFocusLost
         // TODO add your handling code here:
-        if (txtTenKhachHang.getText().equals("")) {
-            txtTenKhachHang.setText("Tìm kiếm khách hàng");
-        }
+
     }//GEN-LAST:event_txtTenKhachHangFocusLost
 
     private void chkKhachVangLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkKhachVangLaiActionPerformed
@@ -810,6 +806,7 @@ public class ManageSale extends javax.swing.JDialog {
     HoaDonChiTietDAO hdctdao = new HoaDonChiTietDAO();
     HoaDonDAO hddao = new HoaDonDAO();
     String notice = null;
+
     private void init() {
         fillToTable();
         hienKhachHang();
@@ -889,7 +886,6 @@ public class ManageSale extends javax.swing.JDialog {
         txtTongTien.setText("0");
         txtTienKhachTra.setText("0");
         txtTienTraKhach.setText("0");
-        chkKhachVangLai.setSelected(false);
     }
 
     private void TaoMoiHD() {
@@ -909,7 +905,7 @@ public class ManageSale extends javax.swing.JDialog {
             ThemSanPhamTbHD(maMon, tenMon, Size, soLuong, donGia, thanhTien, ghiChu);
             txtTongTien.setText(ChuyenDoi.DinhDangTien(TinhTien()));
         } else {
-            MsgBox.alert(this, "Vui lòng chọn món trước và thêm số lượng!!!!");
+            MsgBox.alert(this, notice);
         }
 
     }
@@ -918,7 +914,16 @@ public class ManageSale extends javax.swing.JDialog {
         String maMon = txtMaMon.getText();
         int soLuong = Integer.parseInt(txtSoLuong.getText());
         if (maMon.isEmpty() || soLuong < 1) {
+            notice = "Vui lòng chọn món trước và thêm số lượng!!!!";
             return false;
+        }
+        if (!chkKhachVangLai.isSelected()) {
+            if (txtTenKhachHang.getText().isEmpty()) {
+                notice = "Vui lòng nhập tên khách hàng!!!!";
+                return false;
+            } else {
+                return true;
+            }
         }
         return true;
     }
@@ -933,7 +938,7 @@ public class ManageSale extends javax.swing.JDialog {
 
             JasperPrint p = JasperFillManager.fillReport(report, map, conn = DriverManager.getConnection("jdbc:sqlserver://localhost;"
                     + "databaseName=DuAn1_QuanLyCafe;encrypt=true;trustServerCertificate=true", "sa", "123456"));
-            JasperViewer.viewReport(p, false);
+            JasperViewer.viewReport(p, true);
             JasperExportManager.exportReportToPdfFile(p, "test.pdf");
         } catch (Exception ex) {
             MsgBox.alert(this, ex.getMessage());
@@ -969,6 +974,11 @@ public class ManageSale extends javax.swing.JDialog {
 
     HoaDon getFormHD() {
         HoaDon hd = new HoaDon();
+        if (chkKhachVangLai.isSelected()) {
+
+        } else {
+            hd.setMaKH(Auth.khachhang.getMaKH());
+        }
         hd.setMaNV(Auth.user.getMaNV());
         hd.setNgayLapHD(txtNgayTao.getDate());
         hd.setTongTienHD(ChuyenDoi.ChuyenTien(txtTongTien.getText()));
@@ -1070,7 +1080,7 @@ public class ManageSale extends javax.swing.JDialog {
 
         double tienkhachtra, thanhtien;
         thanhtien = ChuyenDoi.ChuyenTien(txtTongTien.getText());
-        tienkhachtra = Double.parseDouble(txtTienKhachTra.getText());
+        tienkhachtra = ChuyenDoi.ChuyenTien(txtTienKhachTra.getText());
         if (tienkhachtra < thanhtien) {
             notice = "Vui lòng nhập tiền khách trả lớn hơn Tổng tiền !!";
             txtTienKhachTra.requestFocus();

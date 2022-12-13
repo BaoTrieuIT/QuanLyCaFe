@@ -180,6 +180,7 @@ public class Welcome_CafeHouse extends javax.swing.JFrame {
                 if (i == 100) {
                     sp.dispose();
                     new LoginForm_CafeHouse(new javax.swing.JFrame(), true).setVisible(true);
+                    
                 }
             }
 

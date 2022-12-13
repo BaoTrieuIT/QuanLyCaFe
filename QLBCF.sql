@@ -178,3 +178,12 @@ GO
 -- 		Group by a.MaHD
 -- end
 
+
+create trigger trg_capnhatsoluong on HoaDonChiTiet after insert as
+begin
+update DoUong
+set DoUong.SoLuong = DoUong.Soluong-
+(select SoLuong from inserted where MaMon = DoUong.MaMon ) 
+from DoUong
+Join inserted on DoUong.MaMon = inserted.MaMon
+end

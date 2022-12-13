@@ -8,6 +8,7 @@ import DAO.KhachHangDAO;
 import EntityClass.KhachHang;
 import Utils.Auth;
 import Utils.ChuyenDoi;
+import Utils.MsgBox;
 import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import java.util.*;
@@ -199,7 +200,6 @@ public class ResultOfFindCustomer extends javax.swing.JFrame {
     private void chonKhachHang() {
         int index = tblKhachHang.getSelectedRow();
         int MaKhachHang = Integer.parseInt(tblKhachHang.getValueAt(index, 0).toString());
-        System.out.println(MaKhachHang);
         try {
             Auth.khachhang = khdao.selectById(MaKhachHang);
             
@@ -209,7 +209,7 @@ public class ResultOfFindCustomer extends javax.swing.JFrame {
             chuyenThongTinVeFrameBanHang();
             this.dispose();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            MsgBox.alert(this, "Có lỗi:" + e.getMessage());
         }
     }
 

@@ -991,7 +991,7 @@ public class ManageWareHouse extends javax.swing.JDialog {
 
     boolean checkTenMon() {
         String TenSanPham = txtTenMon.getText();
-        if (TenSanPham.length() < 5) {
+        if (TenSanPham.isEmpty()) {
             txtTenMon.requestFocus();
             notice = "Vui lòng nhập Tên món";
             return false;

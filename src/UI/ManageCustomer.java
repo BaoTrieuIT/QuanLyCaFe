@@ -855,9 +855,13 @@ public class ManageCustomer extends javax.swing.JDialog {
             String SDT = txtSDT.getText();
             if (SDT.isEmpty() || SDT.length() < 10 || SDT.length() > 11) {
                 notice = "Kiểm tra lại số điện thoại ";
+                txtSDT.requestFocus();
+
                 ketqua = false;
             } else if (!dao.kiemSDT(SDT)) {
                 ketqua = false;
+                txtSDT.requestFocus();
+
                 notice = "Số điện thoại đã tồn tại";
             }
         } catch (Exception e) {
@@ -870,6 +874,7 @@ public class ManageCustomer extends javax.swing.JDialog {
         boolean ketqua = true;
         String SDT = txtSDT.getText();
         if (SDT.isEmpty() || SDT.length() < 10 || SDT.length() > 11) {
+            txtSDT.requestFocus();
             notice = "Kiểm tra lại số điện thoại ";
             ketqua = false;
         }
